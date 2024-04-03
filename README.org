@@ -1,0 +1,4 @@
+* Next Steps
+
+- [ ] veranschaulichen, wo in dsatnord.mp was liegt. Also wo die Städte liegen, wo die Kacheln, etc. Vielleicht bekomme ich damit eine Idee, wo der Index für die Kacheln liegt.
+- [ ] eine Kachel in eine Bilddatei zu schreiben und zu versuchen, sie mit dem Netscape-Plugin zu öffnen. Das sollte mit einem alten Firefox in einer VM eigentlich machbar sein.
