@@ -12,9 +12,9 @@ wavelet-compressed raster image format]]:
   Computational Mathematics/, Aug. 11-15, 1997, Guangzhou, P.R.China
 - There existed [[ftp://ftp.sunet.se/mirror/archive/ftp.sunet.se/pub/pc/windows/winsock-indstate/Windows95/WWW-Browsers/Plug-In/][a browser plugin to decode such images]].
   - There also existed a [[https://web.archive.org/web/19970613234343/http://www.infinop.com/nhtml/java/index.shtml][Java browser applet]] whose classes were
-    available (after [[https://web.archive.org/web/19970613235015/http://www.infinop.com/nhtml/download.shtml][filling out a form]]), both directly usable
-    (e.g., [[https://web.archive.org/web/19970613234343/http://www.infinop.com/nhtml/java/Lightning.class][Lightning.class]], not archived) and as archive from a
-    [[https://web.archive.org/web/19970613234713/http://www.infinop.com/nhtml/download.shtml][download page]] (classes.tgz).
+    available (after [[https://web.archive.org/web/19970613235015/http://www.infinop.com/nhtml/download.shtml][filling out a form]]), both directly usable (e.g.,
+    [[https://web.archive.org/web/19970613234343/http://www.infinop.com/nhtml/java/Lightning.class][Lightning.class]], not archived) and as archive on a [[https://web.archive.org/web/19970613234713/http://www.infinop.com/nhtml/download.shtml][download page]]
+    (classes.tgz, not archived).
 - there seem to be [[https://web.archive.org/web/19970613235015/http://www.infinop.com/nhtml/javafaq.shtml][different (incompatible) versions]]:
   #+begin_quote
   /I have tried to use some .cod images from my website inside the
