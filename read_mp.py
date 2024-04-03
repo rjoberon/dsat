@@ -17,7 +17,7 @@ import argparse
 version = "0.0.1"
 
 
-def get_pics(fname):
+def read_tiles(fname):
     with open(fname, "rb") as f:
         pos = 0
         oldpos = 0
@@ -40,4 +40,4 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    get_pics(args.input)
+    read_tiles(args.input)
