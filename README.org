@@ -29,6 +29,11 @@ wavelet-compressed raster image format]]:
   new format.
   #+end_quote
 
+*** testing images using old Firefox
+- get [[https://ftp.mozilla.org/pub/firefox/releases/1.5.0.9/win32/en-GB/][Firefox 1.5.0.9]] and install it in Wine
+- copy NPLS32.DLL into plugins folder
+- run Firefox and open [[https://entropymine.com/samples/cod/fox.cod][test image]]
+
 ** Coordinate format
 - an older [[https://groups.google.com/g/de.org.ccc/c/xlaNafyxmrM/m/hXZj7J5ksc8J][usenet discussion on how to decode the geo coordinates]]
   - did we consider [[https://en.wikipedia.org/wiki/SK-42_reference_system][SK-42]] and derivatives?
