@@ -9,10 +9,7 @@ An approach to decode the file format that stores the information
 - [ ] test
   [SK-42](https://en.wikipedia.org/wiki/SK-42_reference_system) and
   derivatives (check older [usenet discussion on how to decode the geo
-  coordinates](https://groups.google.com/g/de.org.ccc/c/xlaNafyxmrM/m/hXZj7J5ksc8J)
-  → did we consider
-  [SK-42](https://en.wikipedia.org/wiki/SK-42_reference_system) and
-  derivatives?)
+  coordinates](https://groups.google.com/g/de.org.ccc/c/xlaNafyxmrM/m/hXZj7J5ksc8J))
 
 # Files
 
