@@ -38,9 +38,9 @@ there exists no free software to work with such files. Here's what we found:
 - There seem to be [different (incompatible)
   versions](https://web.archive.org/web/19970613235015/http://www.infinop.com/nhtml/javafaq.shtml):
 
-    > /I have tried to use some .cod images from my website inside the
+    > *I have tried to use some .cod images from my website inside the
     > Java applet, and they do not display correctly. What could be
-    > wrong?/
+    > wrong?*
     >
     > Most likely, they were compressed with an earlier version of
     > Lightning Strike. The Java applet was designed for use with
