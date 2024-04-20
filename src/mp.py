@@ -57,7 +57,6 @@ def vis_content(fname):
         img.save(fbase + ".png", "PNG")
 
 
-
 def extract_tile(finname, foutname, offset):
     with open(finname, "rb") as fin, open(foutname, 'wb') as fout:
         fin.seek(offset)
@@ -77,7 +76,7 @@ def extract_tile(finname, foutname, offset):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='read .mp files.', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('input', type=str, help='input file')
-    parser.add_argument('-c', '--command', choices=['offsets', 'extract'], default='offsets')
+    parser.add_argument('-c', '--command', choices=['offsets', 'extract', 'vis'], default='offsets')
     parser.add_argument('--offset', type=int, help='offset to extract')
     parser.add_argument('-o', '--out', type=str, help='output file')
     parser.add_argument('-v', '--version', action="version", version="%(prog)s " + version)
@@ -88,3 +87,5 @@ if __name__ == '__main__':
         dump_offsets(args.input)
     elif args.command == 'extract':
         extract_tile(args.input, args.out, args.offset)
+    elif args.command == 'vis':
+        vis_content(args.input)

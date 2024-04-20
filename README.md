@@ -1,7 +1,7 @@
 An approach to decode the file format that stores the information
 (coordinates, satellite images) for DSat 1.
 
-# Next Steps
+## Next Steps
 
 - [ ] Visualise the structure of `dsatnord.mp`, that is, where are city
   names and coordinates, where are the tiles, etc. Maybe that helps to
@@ -11,7 +11,7 @@ An approach to decode the file format that stores the information
   derivatives (check older [usenet discussion on how to decode the geo
   coordinates](https://groups.google.com/g/de.org.ccc/c/xlaNafyxmrM/m/hXZj7J5ksc8J))
 
-# Files
+## Files
 
 | file name     | comment                                                                          |
 |---------------+----------------------------------------------------------------------------------|
