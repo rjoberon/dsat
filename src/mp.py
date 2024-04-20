@@ -17,6 +17,7 @@
 import argparse
 from PIL import Image
 import os
+import cod
 
 version = "0.0.2"
 
@@ -30,28 +31,52 @@ def dump_offsets(fname):
             if b == b'\x43':                 # C
                 b = b + f.read(3)
                 if b == b'\x43\x49\x53\x33': # CIS3
-                    print(pos, pos - oldpos, sep='\t')
+                    # bytes 8+9
+                    c60, size, width, height = cod.parse_header(b + f.read(16))
+                    print(pos, pos - oldpos, c60, size, width, height, sep='\t')
                     oldpos = pos
+                    pos += 16
                 pos += 3
+
+
+def get_color(width, bsize):
+    col = bsize / 1024 * 255
+    if width == 250:
+        return (col, 0, 0)
+    elif width == 500:
+        return (0, col, 0)
+    elif width == 1000:
+        return (0, 0, col)
+    return (0, 0, 0)
+
+
+def set_pixel(pixels, pos, size, width):
+    row = pos // 2**20
+    col = (pos - (row * 2**20)) // 1024
+    #pixels[pos % 1024, pos // 1024] = 1
 
 
 def vis_content(fname):
     # get file size
     fbytes = os.path.getsize(fname)
-    img = Image.new('1', (1024, fbytes // 1024 + 1024), "white")
+    isize = ((fbytes // 2**20) + 1, 1024)
+    print(fbytes, isize)
+
+    img = Image.new('1', isize, "white")
     pixels = img.load()
+
     with open(fname, "rb") as f:
-        pos = 0
-        oldpos = 0
+        pos = -1
+        oldpos = -1
         while ((b := f.read(1))):
             pos += 1
             if b == b'\x43':                 # C
                 b = b + f.read(3)
                 if b == b'\x43\x49\x53\x33': # CIS3
-                    #print(b.decode(), f.read(7))
-                    pixels[pos % 1024, pos // 1024] = 1
-                    print(pos, pos - oldpos, sep='\t')
+                    c60, size, width, height = cod.parse_header(b + f.read(16))
+                    set_pixel(pixels, pos, size, width)
                     oldpos = pos
+                    pos += 16
                 pos += 3
         fbase, fext = os.path.splitext(fname)
         img.save(fbase + ".png", "PNG")
