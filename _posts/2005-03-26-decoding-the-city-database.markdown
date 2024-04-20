@@ -4,51 +4,51 @@ For current development status see [below](#below).
 
 ## Introduction
 
-D-Sat 1 is a satellite atlas of germany, consisting of pictures taken by
-russian COSMOS satellites in 1991. Besides viewing the pictures, it is
-also possible to search for over 13000 german cities (see
-[screenshot](img/screenshot_dsat1_sandersdorf.png)) and to read the
-coordinates of the locations under the mouse pointer. D-Sat 1 was
-published in 1996, several versions followed (up to D-Sat 6 AFAIK), the
-companys which programmed and distributed D-Sat (SCOUT Systems and
-TopWare) are bankrupt now.
+D-Sat 1 is a satellite atlas of Germany, consisting of pictures taken
+by russian COSMOS satellites in 1991. Besides viewing the pictures, it
+is also possible to search for over 13000 German cities (see
+[screenshot](/img/screenshot_dsat1_sandersdorf.png)) and to read the
+coordinates of the locations under the mouse pointer. D-Sat 1 was
+published in 1996, several versions followed (up to D-Sat 6 AFAIK),
+the companies which programmed and distributed D-Sat (SCOUT Systems
+and TopWare) are bankrupt now.
 
-Besides the secret file format and compression algorithmus of the
+Besides the proprietary file format and compression algorithm of the
 pictures, the coordinate system (projection/datum) are AFAIK also
-unknown. My intention is, to decode at least the data of the city
-database and to use that data, to find out the used coordinate system.
+unknown. My intention is to decode at least the data of the city
+database and to use that data to find out the used coordinate system.
 
 The file **dsatnord.mp** contains the whole city database (dsatsued.mp
 also, but not tested). The first location is **\"Aach\"**, offset
-unknown (extracted it once and then forgot it \...). I decoded the main
-parts of the city database (was\'n so difficult, see below), but I
-recognized, that the coordinates in the database differ from the
-coordinates which are shown, if I put the mouse pointer on the basis of
+unknown (extracted it once and then forgot it \...). I decoded the
+main parts of the city database (was\'n so difficult, see below), but
+I recognized that the coordinates in the database differ from the
+coordinates which are shown if I put the mouse pointer on the basis of
 the \"town sign\".
 
-So the basic problem is, to find the connection between
-screen-coordinates (under the mouse pointer), city-coordinates (from the
-database) and true coordinates. Unfortunately it\'s very boring work, to
-write down the screen-coordinates, because it\'s impossible for me, to
-get them automatically. So the data base of screen-coordinates is very
-small. On the other hand, I have over 13000 coordinates of german cities
-with the problem, that some of them are completely wrong (there existed
-an corrected update to D-Sat 1, I\'m trying to decode that) and there is
-no concept, which part of the city has been chosen as reference point.
-Therefore automatic comparison e.g. with OpenGeoDB data is very
-difficult.
+So the basic problem is to find the connection between screen
+coordinates (under the mouse pointer), city coordinates (from the
+database) and true coordinates. Unfortunately, it is very boring work
+to write down the screen coordinates, because it is impossible for me
+to get them automatically. So the database of screen coordinates is
+very small. On the other hand, I have over 13000 coordinates of German
+cities with the problem that some of them are completely wrong (there
+existed a corrected update to D-Sat 1, I\'m trying to decode that) and
+there is rule which part of the city has been chosen as reference
+point.  Therefore, automatic comparison, for example, with OpenGeoDB
+data is very difficult.
 
-Unfortunately, some rumours in the internet say, that the pictures of
-D-Sat 1 are very badly geo-referenced. So maybe it is impossible, to
-discover projection and datum, because it\'s just very badly
+Unfortunately, some rumours in the Internet also say that the pictures
+of D-Sat 1 are very badly geo-referenced. So maybe it is impossible to
+discover projection and datum, because it is just very badly
 geo-referenced GKK/Potsdam?
 
 ## format of city data base
 
 The format of the data is 64 bytes per city:
 
--   40 Byte cityname (ASCII)
--   24 Byte coordinates + other data (to identify), consisting of
+-   40 Bytes cityname (ASCII)
+-   24 Bytes coordinates + other data (to identify), consisting of
     -   Bytes 1-4: have exclusively the following values:
 
 
@@ -115,11 +115,11 @@ values have nothing to do with the location of the cities.
 ### put into an image \...
 
 OK, so let\'s take all 13378 cities, their easting/northing and put them
-into a cartesian coordinate system: [orte.ps.gz](img/orte.ps.gz); function
+into a cartesian coordinate system: [orte.ps.gz](/img/orte.ps.gz); function
 used to transform the coordinates into PostScript-compatible values:
 PS_E = (500.0/1835000.0) \* (E-1114000), PS_N = (1000.0/262144.0) \*
 (N-5505000)\
-![](img/dsat1_dekodiert_1.png) Nice, isn\'t it? :-)\
+![](/img/dsat1_dekodiert_1.png) Nice, isn\'t it? :-)\
 (besides an east-west-compression - which may result from conversion to
 Postscript-Coordinates?!)
 
@@ -136,12 +136,12 @@ explanation of the columns in the following table:
     database
 -   screen_E/screen_N: easting/northing which is shown on screen, when I
     put the mouse pointer on the basis of the town sign (see
-    [screenshot](img/screenshot_dsat1_sandersdorf.png))
+    [screenshot](/img/screenshot_dsat1_sandersdorf.png))
 -   GKK/Potsdam, UTM/WGS84: I tried to find the locations of the town
     signs in the topographical map 1:25000 and wrote down the
     coordinates (see red cross in [screenshot
-    TK25](img/screenshot_tk25_sandersdorf.png) and compare with [screenshot
-    D-Sat 1](img/screenshot_dsat1_sandersdorf.png)). Of course, this is very
+    TK25](/img/screenshot_tk25_sandersdorf.png) and compare with [screenshot
+    D-Sat 1](/img/screenshot_dsat1_sandersdorf.png)). Of course, this is very
     error prone, because it\'s impossible to get the exact location.
 -   screen_E-GKK_E: difference between screen-easting and
     GKK/Potsdam-easting
@@ -155,14 +155,14 @@ for the few data here. :-(
   ---------------------------------------------------------------------------------------------------------------- --------- --------- ------------ ------------ ---------------------- -------------------- ------------------ ------------------
   Salzfurtkapelle                                                                                                  2488688   5629157   4507038.0m   5729278.0m   4512121E - 5728869N    304711E - 5730783N   -5083              409
   Wolfen                                                                                                           2501091   5628611   4513170.0m   5726920.0m   4518355E - 5726409N    310938E - 5727642N   -5185              511
-  Sandersdorf (Screenshots: [TK25](img/screenshot_tk25_sandersdorf.jpg), [D-Sat1](img/screenshot_dsat1_sandersdorf.png))   2501138   5627385   4513056.0m   5722012.0m   4518214E - 5721479N    310460E - 5723154N   -5158              533
+  Sandersdorf (Screenshots: [TK25](/img/screenshot_tk25_sandersdorf.jpg), [D-Sat1](/img/screenshot_dsat1_sandersdorf.png))   2501138   5627385   4513056.0m   5722012.0m   4518214E - 5721479N    310460E - 5723154N   -5158              533
   Thalheim                                                                                                         2496565   5628002   4510842.0m   5724544.0m   4515992E - 5724054N    308346E - 5725823N   -5150              490
   Jeßnitz                                                                                                          2507842   5629039   4516584.0m   5728546.0m   4521814E - 5727937N    314323E - 5729459N   -5230              609
   Greppin                                                                                                          2506254   5627847   4515666.0m   5723788.0m   4520853E - 5723274N    313171E - 5724839N   -5187              514
   Paplitz                                                                                                          2662879   5640168   4595124.0m   5771098.0m   4601091E - 5769517N    395230E - 5767732N   -5967              1581
   Horstwalde                                                                                                       2653560   5641043   4590582.0m   5774734.0m   4596532E - 5773231N    390830E - 5771630N   -5950              1503
 
-In [dsat_difference_vector.ps](img/dsat_difference_vector.ps) I have
+In [dsat_difference_vector.ps](/img/dsat_difference_vector.ps) I have
 drawn the difference vectors to the real locations (screen_E-GKK_E and
 screen_N-GKK_N). Note: the signs are drawn wrong (always positive). To
 me that looks good, i.e. there seems to be a systematic error to the
@@ -174,7 +174,7 @@ real locations.\ generation of file (plus header/footer):
           ($6-4507000)/f " " ((2*$5)-$7-5720000)/f " lineto stroke "}' \
           < vergleich_2  > dsat_difference_vector.ps
 
-Difference Vectors: ![](img/dsat_difference_vector.jpg)
+Difference Vectors: ![](/img/dsat_difference_vector.jpg)
 
 ### it gets worse
 
@@ -216,7 +216,7 @@ Thanks to Mikael Rekola, because he pointed out that the coordinates
 in the city database could also be stored as (long) floating
 point. And that could be indeed true! I\'m still doing some
 comparisons, but actually the floating point values again give a map
-of Germany: [new.ps.gz](img/new.ps.gz). This map is much more
+of Germany: [new.ps.gz](/img/new.ps.gz). This map is much more
 distorted, if I don\'t scale it appropriately.
 
 The second and third column show the new values for locations given
