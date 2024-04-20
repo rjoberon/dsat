@@ -1,0 +1,16 @@
+set term 'png' enhanced size 1920,1200
+set out 'offsets.png'
+
+#
+# plot byte offsets of "CIS3" in dsatnord.mp
+#
+
+set datafile separator "\t"
+
+#set xrange [1:1000000]
+set yrange [0:100000]
+set title "byte offsets of \"CIS3\" in dsatnord.mp"
+set xlabel "byte offset"
+set ylabel "byte distance to previous offset"
+
+plot 'offsets.tsv' using 1:2 with points pt 7 title ""
