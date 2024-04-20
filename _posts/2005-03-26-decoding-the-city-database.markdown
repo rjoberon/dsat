@@ -82,8 +82,8 @@ The format of the data is 64 bytes per city:
 
     -   Bytes 18-24: always 0
 
-Note: Bytes 1-4, 12 and 17 are geographically independent, i.e. the
-values have nothing to do with the location of the cities.
+Note: Bytes 1-4, 12 and 17 are geographically independent, that is,
+the values have nothing to do with the location of the cities.
 
 ### some sample data
 
@@ -114,19 +114,22 @@ values have nothing to do with the location of the cities.
 
 ### put into an image \...
 
-OK, so let\'s take all 13378 cities, their easting/northing and put them
-into a cartesian coordinate system: [orte.ps.gz](/img/orte.ps.gz); function
-used to transform the coordinates into PostScript-compatible values:
-PS_E = (500.0/1835000.0) \* (E-1114000), PS_N = (1000.0/262144.0) \*
+OK, so let us take all 13378 cities, their easting/northing and put
+them into a cartesian coordinate system:
+[orte.ps.gz](/img/orte.ps.gz). THe function I used to transform the
+coordinates into PostScript-compatible values is: PS_E =
+(500.0/1835000.0) \* (E-1114000), PS_N = (1000.0/262144.0) \*
 (N-5505000)\
-![](/img/dsat1_dekodiert_1.png) Nice, isn\'t it? :-)\
-(besides an east-west-compression - which may result from conversion to
-Postscript-Coordinates?!)
 
-For me this picture was the prove, that I really found the coordinates
+![](/img/dsat1_dekodiert_1.png)
+
+Nice, isn\'t it? :-)\ (besides an east-west-compression – which may
+result from conversion to Postscript coordinates?!)
+
+For me this picture was the proof that I really found the coordinates
 of the cities and not some other data. I also tried to colorize the
 points, depending on the value of the unidentified bytes, but that
-yielded no pattern - the colors were spread all over germany.
+yielded no pattern – the colors were spread all over Germany.
 
 ### comparison to known data
 
@@ -152,15 +155,15 @@ The fact, that I have only two geo-referenced Top25-maps is the reason
 for the few data here. :-(
 
   city                                                                                                             file_E    file_N    screen_E     screen_N     \_GKK/Potsdam\_(4)\_   UTM/WGS84\_(33U)     screen_E - GKK_E   screen_N - GKK_N
-  ---------------------------------------------------------------------------------------------------------------- --------- --------- ------------ ------------ ---------------------- -------------------- ------------------ ------------------
-  Salzfurtkapelle                                                                                                  2488688   5629157   4507038.0m   5729278.0m   4512121E - 5728869N    304711E - 5730783N   -5083              409
-  Wolfen                                                                                                           2501091   5628611   4513170.0m   5726920.0m   4518355E - 5726409N    310938E - 5727642N   -5185              511
+  ------------------------------------------------------------------------------------------------------------------------- --------- --------- ------------ ------------ ---------------------- -------------------- ------------------ ------------------
+  Salzfurtkapelle                                                                                                            2488688   5629157   4507038.0m   5729278.0m   4512121E - 5728869N    304711E - 5730783N   -5083              409
+  Wolfen                                                                                                                     2501091   5628611   4513170.0m   5726920.0m   4518355E - 5726409N    310938E - 5727642N   -5185              511
   Sandersdorf (Screenshots: [TK25](/img/screenshot_tk25_sandersdorf.jpg), [D-Sat1](/img/screenshot_dsat1_sandersdorf.png))   2501138   5627385   4513056.0m   5722012.0m   4518214E - 5721479N    310460E - 5723154N   -5158              533
-  Thalheim                                                                                                         2496565   5628002   4510842.0m   5724544.0m   4515992E - 5724054N    308346E - 5725823N   -5150              490
-  Jeßnitz                                                                                                          2507842   5629039   4516584.0m   5728546.0m   4521814E - 5727937N    314323E - 5729459N   -5230              609
-  Greppin                                                                                                          2506254   5627847   4515666.0m   5723788.0m   4520853E - 5723274N    313171E - 5724839N   -5187              514
-  Paplitz                                                                                                          2662879   5640168   4595124.0m   5771098.0m   4601091E - 5769517N    395230E - 5767732N   -5967              1581
-  Horstwalde                                                                                                       2653560   5641043   4590582.0m   5774734.0m   4596532E - 5773231N    390830E - 5771630N   -5950              1503
+  Thalheim                                                                                                                   2496565   5628002   4510842.0m   5724544.0m   4515992E - 5724054N    308346E - 5725823N   -5150              490
+  Jeßnitz                                                                                                                    2507842   5629039   4516584.0m   5728546.0m   4521814E - 5727937N    314323E - 5729459N   -5230              609
+  Greppin                                                                                                                    2506254   5627847   4515666.0m   5723788.0m   4520853E - 5723274N    313171E - 5724839N   -5187              514
+  Paplitz                                                                                                                    2662879   5640168   4595124.0m   5771098.0m   4601091E - 5769517N    395230E - 5767732N   -5967              1581
+  Horstwalde                                                                                                                 2653560   5641043   4590582.0m   5774734.0m   4596532E - 5773231N    390830E - 5771630N   -5950              1503
 
 In [dsat_difference_vector.ps](/img/dsat_difference_vector.ps) I have
 drawn the difference vectors to the real locations (screen_E-GKK_E and
