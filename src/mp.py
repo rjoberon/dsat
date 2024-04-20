@@ -4,7 +4,7 @@
 #
 # Reads .mp files
 #
-# Usage:
+# Usage: mp.py --help
 #
 # Author: rja
 #
