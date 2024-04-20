@@ -1,6 +1,6 @@
 # D-Sat 1
 
-For current development status see [below](#below).
+For current development status see [below](#current-development-status).
 
 ## Introduction
 
@@ -168,28 +168,31 @@ for the few data here. :-(
 In [dsat_difference_vector.ps](/img/dsat_difference_vector.ps) I have
 drawn the difference vectors to the real locations (screen_E-GKK_E and
 screen_N-GKK_N). Note: the signs are drawn wrong (always positive). To
-me that looks good, i.e. there seems to be a systematic error to the
-real locations.\ generation of file (plus header/footer):
+me that looks good, that is, there seems to be a systematic error to
+the real locations. generation of file (plus header/footer):
 
-    awk '{f=200} {print "newpath " ($4-4507000)/f " "($5-5720000)/f \
-          " 1 0 360 arc fill \
-          newpath " ($4-4507000)/f " " ($5-5720000)/f " moveto " \
-          ($6-4507000)/f " " ((2*$5)-$7-5720000)/f " lineto stroke "}' \
-          < vergleich_2  > dsat_difference_vector.ps
+```sh
+awk '{f=200} {print "newpath " ($4-4507000)/f " "($5-5720000)/f \
+      " 1 0 360 arc fill \
+      newpath " ($4-4507000)/f " " ($5-5720000)/f " moveto " \
+      ($6-4507000)/f " " ((2*$5)-$7-5720000)/f " lineto stroke "}' \
+      < vergleich_2  > dsat_difference_vector.ps
+```
 
-Difference Vectors: ![](/img/dsat_difference_vector.jpg)
+Difference vectors: ![](/img/dsat_difference_vector.jpg)
 
 ### it gets worse
 
 In D-Sat you can put markers on the map to remember locations. The
-location of the markers is saved in dsat.ini. Very simple format:
+location of the markers is saved in `dsat.ini` in a very simple
+format:
 
     M005Key1=5
     M005Key2=32838
     M005Key3=248766
     M005File=
 
-Key1 selects the symbol, which is shown on the screen, so the other two
+Key1 selects the symbol which is shown on the screen, so the other two
 values should be the coordinates of the marker. The problem is very
 simple:
 
@@ -199,21 +202,21 @@ simple:
      Selfkant       : 1128882 : 5610221 :  4068213.0 : 5665063.0 :  468978 :  55734
      Deschka        : 2890943 : 5620266 :  4704306.0 : 5688157.0 :  445878 : 691830
 
-(BTW: these are the most northern, southern, western and eastern cities
-inside D-Sat.) The first two values file_E/file_N are extracted by me
-from the dsatnord.mp file, the second two values screen_E/screen_N are
-shown on the screen and the third two values are from the markers, I put
-on the city-location.
+(BTW: these are the most northern, southern, western and eastern
+cities inside D-Sat.) The first two values file_E/file_N are extracted
+by me from `dsatnord.mp`, the second two values screen_E/screen_N are
+shown on the screen and the third two values are from the markers, I
+put on the city location.
 
 ### Help!
 
 If you have ideas that could help to decode any of that coordinates,
 [I](https://amor.cms.hu-berlin.de/~jaeschkr/) would be glad to hear
-from you.  I\'m also interested in information regarding the rumour,
-that the pictures in D-Sat1 are very badly geo-referenced and so it is
-impossible to get correct coordinates.
+from you.  I\'m also interested in information regarding the rumour
+that the pictures in D-Sat 1 are very badly geo-referenced and so it
+is impossible to get correct coordinates.
 
-### [Current development status]{#below}
+### Current development status
 
 Thanks to Mikael Rekola, because he pointed out that the coordinates
 in the city database could also be stored as (long) floating
