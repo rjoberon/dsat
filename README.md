@@ -1,7 +1,3 @@
----
-title: Decoding the DSat data file
----
-
 # Information
 
 ## Image format
