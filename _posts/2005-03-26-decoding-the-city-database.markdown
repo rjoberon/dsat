@@ -1,3 +1,9 @@
+---
+title: Decoding the city database
+---
+
+*Note: This post is a copy of the original web page I set up in 2005.*
+
 # D-Sat 1
 
 For current development status see [below](#current-development-status).
