@@ -7,7 +7,7 @@ had a look at the decompiled `lsd26dll.dll`. My colleague Jan found
 the function `CLsDecode::GetImageDataSize` and figured out that the
 first lines
 
-```
+```c
 if (*arg1 == 0x43 && arg1[1] == 0x49 && arg1[2] == 0x53)
     if (arg1[3] != 0x33)
         return 0
