@@ -9,6 +9,8 @@
 # Author: rja
 #
 # Changes:
+# 2024-04-20 (rja)
+# - added support to extract tiles
 # 2024-04-02 (rja)
 # - initial version
 
@@ -16,7 +18,7 @@ import argparse
 from PIL import Image
 import os
 
-version = "0.0.1"
+version = "0.0.2"
 
 
 def dump_offsets(fname):
@@ -41,7 +43,7 @@ def dump_offsets(fname):
 #        img.save(fbase + ".png", "PNG")
 
 
-def extract(finname, foutname, offset):
+def extract_tile(finname, foutname, offset):
     with open(finname, "rb") as fin, open(foutname, 'wb') as fout:
         fin.seek(offset - 1)
         b = fin.read(4)
@@ -70,4 +72,4 @@ if __name__ == '__main__':
     if args.command == 'offsets':
         dump_offsets(args.input)
     elif args.command == 'extract':
-        extract(args.input, args.out, args.offset)
+        extract_tile(args.input, args.out, args.offset)
