@@ -50,3 +50,8 @@ plt.show()
 ```
 
 ![](/img/offsets_sizes.png)
+
+So the roughly 2400 tiles of size 500x500 come early on and they are,
+on average, larger than the 1000x1000 tiles. Very likely they are the
+colored overview tiles. Then follow the 24700 tiles of size 1000x1000
+– very likely greyscale detailed images.
