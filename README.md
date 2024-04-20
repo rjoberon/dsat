@@ -1,14 +1,5 @@
 # Information
 
-#
-### testing images using old Firefox
-
--   get [Firefox
-    1.5.0.9](https://ftp.mozilla.org/pub/firefox/releases/1.5.0.9/win32/en-GB/)
-    and install it in Wine
--   copy NPLS32.DLL into plugins folder
--   run Firefox and open [test
-    image](https://entropymine.com/samples/cod/fox.cod)
 
 ## Coordinate format
 
