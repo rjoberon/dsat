@@ -6,7 +6,7 @@ Knowing the offsets of (potential) tiles, we can pick one (56057877)
 and extract the tile into a file:
 
 ```sh
-./src/mp.py -c extract -o img/tile_56057878.cod --offset 56057877 dsatnord.mp
+./src/mp.py -c extract -o img/tile_56057877.cod --offset 56057877 dsatnord.mp
 ```
 
 Then we get [Firefox
