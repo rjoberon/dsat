@@ -48,6 +48,21 @@ color legend:
 - magenta: 13522709 - 12665493 = 857216 bytes city database (for
   857216 / 64 = 13394 cities)
 
+The positions of the segments are as follows:
+
+|     start |       end |    length | size [MB] | segment         | comment                     |
+|-----------+-----------+-----------+-----------+-----------------+-----------------------------|
+|         0 |    316020 |    316020 |       0.3 | unknown1        |                             |
+|    316020 |   1070097 |    754077 |       0.7 | tiles 250x250   | 20 tiles                    |
+|   1070097 |  10127037 |   9056940 |       8.6 | tiles 500x500   | 169 tiles                   |
+|  10127037 |  12665493 |   2538456 |       2.4 | unknown2        |                             |
+|  12665493 |  13522709 |    857216 |       0.8 | city database   | 13394 cities, 64 bytes each |
+|  13522709 |  16194771 |   2672062 |       2.5 | unknown3        |                             |
+|  16194771 |  86822577 |  70627806 |      67.4 | tiles 500x500   | 2240 tiles                  |
+|  86822577 | 644833451 | 558010874 |     532.2 | tiles 1000x1000 | 24701 tiles                 |
+| 644833451 | 644833911 |       460 |       0.0 | unknown4        |                             |
+#+TBLFM: $3=$-1-$-2::$4=$-1/1024/1024;%2.1f
+
 Conclusion: There seem to be two sets of 500x500 tiles (also by size,
 as we [observed
 before](/2024/04/21/visualising-the-tile-size-distribution.html)) and
