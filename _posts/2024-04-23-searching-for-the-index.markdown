@@ -18,10 +18,10 @@ Now let us visualise the two larger segments `un2.dat` and `un3.dat`
 as follows: we interpret each byte as a greyscale value in the range
 0...255:
 
-![](/img/un2.dat)
+![](/img/un2.png)
 
 (image created with `./src/mp.py -c vis_bytes --out img/un2.png un2.dat`)
 
-![](/img/un3.dat)
+![](/img/un3.png)
 
 (image created with `./src/mp.py -c vis_bytes --out img/un3.png un3.dat`)
