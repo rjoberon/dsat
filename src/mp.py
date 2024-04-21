@@ -11,6 +11,7 @@
 # Changes:
 # 2024-04-21 (rja)
 # - implemented vis_content and accompanying functions
+# - implemented vis_bytes and dump_bytes
 # 2024-04-20 (rja)
 # - added support to extract tiles
 # 2024-04-02 (rja)
@@ -21,7 +22,7 @@ from PIL import Image
 import os
 import cod
 
-version = "0.0.2"
+version = "0.0.3"
 
 
 def dump_offsets(fname):
@@ -170,10 +171,33 @@ def extract_tile(finname, foutname, offset):
                 fout.write(b)
 
 
+def vis_bytes(fname, foutname):
+    with open(fname, "rb") as f:
+        fbytes = os.path.getsize(fname)        # file size
+        width = 1024
+        height = fbytes // width + 1            # image height
+        img = Image.new('L', (width, height), "black")
+        pixels = img.load()
+        for pos in range(os.path.getsize(fname)):
+            f.seek(pos)
+            b = f.read(1)
+            pixels[pos % width, pos // width] = int.from_bytes(b, signed=False)
+        img.save(foutname, "PNG")
+
+
+def dump_bytes(fname):
+    with open(fname, "rb") as f:
+        for pos in range(os.path.getsize(fname)):
+            f.seek(pos)
+            b = f.read(4)
+            lint = int.from_bytes(b, byteorder='little', signed=False)
+            print(pos, "{:10d}".format(lint), sep='\t')
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='read .mp files.', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('input', type=str, help='input file')
-    parser.add_argument('-c', '--command', choices=['offsets', 'extract', 'vis'], default='offsets')
+    parser.add_argument('-c', '--command', choices=['offsets', 'extract', 'vis', 'dump_bytes', 'vis_bytes'], default='offsets')
     parser.add_argument('--offset', type=int, help='offset to extract')
     parser.add_argument('--width', type=int, help='vis: image width', default=2**10)
     parser.add_argument('--bpp', type=int, help='vis: bytes per pixel', default=2**10)
@@ -188,3 +212,7 @@ if __name__ == '__main__':
         extract_tile(args.input, args.out, args.offset)
     elif args.command == 'vis':
         vis_content(args.input, args.out, args.bpp, args.width)
+    elif args.command == 'dump_bytes':
+        dump_bytes(args.input)
+    elif args.command == 'vis_bytes':
+        vis_bytes(args.input, args.out)
