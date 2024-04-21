@@ -55,3 +55,11 @@ So the roughly 2400 tiles of size 500x500 come early on and they are,
 on average, larger than the 1000x1000 tiles. Very likely they are the
 colored overview tiles. Then follow the 24700 tiles of size 1000x1000
 – very likely greyscale detailed images.
+
+After extracting a sample of tiles from each size I can confirm that:
+- The 20 tiles of size 250x250 are in color and provide the lowest
+  resolution overview on Germany.
+- The 2409 tiles of size 500x500 are in color and provide the first
+  (and probably second) zoom level.
+- The 24701 tiles of size 1000x1000 are in greyscale and provide the
+  highest zoom level.
