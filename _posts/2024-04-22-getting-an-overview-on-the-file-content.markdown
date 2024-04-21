@@ -50,6 +50,6 @@ color legend:
 
 Conclusion: There seem to be two sets of 500x500 tiles (also by size,
 as we [observed
-before](/2024/04/21/visualising-the-tile-size-distribution.html) and
+before](/2024/04/21/visualising-the-tile-size-distribution.html)) and
 inbetween them is the city database and unidentified space. I guess
 (and hope) that we can find the tile index there.
