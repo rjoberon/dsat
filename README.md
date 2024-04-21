@@ -1,9 +1,9 @@
-An endeavour to reverse-engineer the file format of DSat 1.
+An endeavour to reverse-engineer the file format of D-Sat 1.
 
 ## What is it about?
 
-DSat was a series of CD/DVD-ROMs from the 1990s which contained aerial
-and satellite imagery of Germany.[^1] The data was stored in a
+D-Sat was a series of CD/DVD-ROMs from the 1990s which contained
+aerial and satellite imagery of Germany.[^1] The data was stored in a
 proprietary file format and thus can only be used with the original
 Windows programs. Since this is not sustainable, this project seeks to
 reverse-engineer the file format and develop tools to access the

@@ -25,7 +25,7 @@ is `~/.wine/drive_c/Program Files/Mozilla Firefox/plugins/`.
 
 Now we can run Firefox using Wine and open a [test
 image](https://entropymine.com/samples/cod/fox.cod). It should show
-two white foxes. Opening the extracted tile should show a proper DSat
+two white foxes. Opening the extracted tile should show a proper D-Sat
 satellite image as follows:
 
 ![](/img/screenshot_firefox_plugin.png)
