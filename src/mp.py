@@ -9,6 +9,8 @@
 # Author: rja
 #
 # Changes:
+# 2024-04-21 (rja)
+# - implemented vis_content and accompanying functions
 # 2024-04-20 (rja)
 # - added support to extract tiles
 # 2024-04-02 (rja)
@@ -39,47 +41,117 @@ def dump_offsets(fname):
                 pos += 3
 
 
-def get_color(width, bsize):
-    col = bsize / 1024 * 255
-    if width == 250:
-        return (col, 0, 0)
-    elif width == 500:
-        return (0, col, 0)
-    elif width == 1000:
-        return (0, 0, col)
+def get_color(twidth, bsize, bpp):
+    """
+    twidth : pixel width of tile (250, 500, 1000)
+    bsize : bytes in block
+    bpp : bytes per pixel
+    """
+    col = int(bsize / bpp * 255)           # color intensity in range [0..255]
+    if twidth == 250:
+        return (col, 0, 0)                 # red
+    elif twidth == 500:
+        return (0, col, 0)                 # green
+    elif twidth == 1000:
+        return (0, 0, col)                 # blue
+    elif twidth == -1:                     # hack: city database
+        return (col, 0, col)               # magenda
     return (0, 0, 0)
 
 
-def set_pixel(pixels, pos, size, width):
-    row = pos // 2**20
-    col = (pos - (row * 2**20)) // 1024
-    #pixels[pos % 1024, pos // 1024] = 1
+def get_pixels(spos, epos, twidth, bpp):
+    """
+    spos : start position of tile (byte offset)
+    epos : end position of tile (byte offset)
+    twidth : pixel width of tile (250, 500, 1000)
+    bpp : bytes per pixel
+    """
+    #
+    # |    <|-----|-----|-----|-----|-->  |
+    # ^                             ^
+    # spos                          epos
+    #
+
+    fb = (spos // bpp + 1) * bpp - spos    # bytes in first block
+    nb = epos // bpp - spos // bpp - 1     # number of full blocks
+    lb = epos - (epos // bpp) * bpp        # bytes in last block
+
+    return [get_color(twidth, fb, bpp)] + ([get_color(twidth, bpp, bpp)] * nb) + [get_color(twidth, lb, bpp)]
 
 
-def vis_content(fname):
-    # get file size
-    fbytes = os.path.getsize(fname)
-    isize = ((fbytes // 2**20) + 1, 1024)
-    print(fbytes, isize)
+def set_pixels(pixels, spos, pix, bpp, width):
+    """
+    pixels : bitmap to draw on
+    spos : start position of tile (byte offset)
+    bpp : bytes per pixel
+    width : width of bitmap
+    """
+    sposblock = spos // bpp                # start block
+    for i, p in enumerate(pix):
+        cposblock = sposblock + i          # current block
+        row = cposblock // width
+        col = cposblock % width
+        set_color(pixels, col, row, p)
 
-    img = Image.new('1', isize, "white")
+
+def set_color(pixels, col, row, c):
+    """
+    pixels : bitmap to draw on
+    col : column for pixel to set
+    row : row for pixel to set_color
+    c : color to set/add
+    """
+    currc = pixels[col, row]               # current color of pixel
+    newc = (
+        min(255, currc[0] + c[0]),
+        min(255, currc[1] + c[1]),
+        min(255, currc[2] + c[2])
+    )
+    pixels[col, row] = newc
+
+
+def set_citydb(pixels, bpp, width):
+    """
+    FIXME: hard-coded offsets for city database in dsatnord.mp
+    """
+    spos = 12665493
+    epos = 13522709
+    pix = get_pixels(spos, epos, -1, bpp)
+    set_pixels(pixels, spos, pix, bpp, width)
+
+
+def vis_content(fname, foutname, bpp=2**10, width=2**10):
+    """
+    Visualise the distribution of tiles (and other content) by coloring pixels of a bitmap.
+
+    One pixel represents bpp (default: 1024) bytes of the original file.
+
+    bpp : bytes per pixel
+    width : image width
+
+    """
+    fbytes = os.path.getsize(fname)        # file size
+    height = (fbytes // (bpp * width)) + 1 # image height
+    print(fbytes, width, height)
+
+    img = Image.new('RGB', (width, height), "black")
     pixels = img.load()
 
     with open(fname, "rb") as f:
         pos = -1
-        oldpos = -1
         while ((b := f.read(1))):
             pos += 1
             if b == b'\x43':                 # C
                 b = b + f.read(3)
                 if b == b'\x43\x49\x53\x33': # CIS3
-                    c60, size, width, height = cod.parse_header(b + f.read(16))
-                    set_pixel(pixels, pos, size, width)
-                    oldpos = pos
+                    c60, tsize, twidth, theight = cod.parse_header(b + f.read(16))
+                    pix = get_pixels(pos, pos + tsize, twidth, bpp)
+                    set_pixels(pixels, pos, pix, bpp, width)
                     pos += 16
                 pos += 3
-        fbase, fext = os.path.splitext(fname)
-        img.save(fbase + ".png", "PNG")
+        # FIXME: hard-coded city database offsets
+        set_citydb(pixels, bpp, width)
+        img.save(foutname, "PNG")
 
 
 def extract_tile(finname, foutname, offset):
@@ -103,6 +175,8 @@ if __name__ == '__main__':
     parser.add_argument('input', type=str, help='input file')
     parser.add_argument('-c', '--command', choices=['offsets', 'extract', 'vis'], default='offsets')
     parser.add_argument('--offset', type=int, help='offset to extract')
+    parser.add_argument('--width', type=int, help='vis: image width', default=2**10)
+    parser.add_argument('--bpp', type=int, help='vis: bytes per pixel', default=2**10)
     parser.add_argument('-o', '--out', type=str, help='output file')
     parser.add_argument('-v', '--version', action="version", version="%(prog)s " + version)
 
@@ -113,4 +187,4 @@ if __name__ == '__main__':
     elif args.command == 'extract':
         extract_tile(args.input, args.out, args.offset)
     elif args.command == 'vis':
-        vis_content(args.input)
+        vis_content(args.input, args.out, args.bpp, args.width)
