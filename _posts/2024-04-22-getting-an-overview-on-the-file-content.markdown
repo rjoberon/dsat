@@ -2,7 +2,7 @@
 title: Getting an overview on the file content
 ---
 
-With [the last
+In [the last
 post](/2024/04/21/visualising-the-tile-size-distribution.html) we
 already gained a good overview on the distribution of tiles in
 `dsatnord.mp`. Together with [the first
