@@ -58,16 +58,16 @@ likely stored as 32 bit unsigned integer.
 Thus, the structure of the first 20 bytes of the (60 byte?) header
 seems to be as follows:
 
-| Name                       | Size    | Value  | Comment              |
-|----------------------------+---------+--------+----------------------|
-| file header / magic number | 4 bytes | "CIS3" |                      |
-|                            | 1 byte  | "."    | part of file header? |
-| unknown                    | 3 byte  |        |                      |
-| constant 60?               | 2 bytes | 60     |                      |
-| data size                  | 4 bytes |        | file size - 60       |
-| unknown                    | 1 byte  | 0x00   | always zero?         |
-| unknown                    | 1 byte  |        |                      |
-| image width                | 2 byte  |        |                      |
-| image height               | 2 byte  |        |                      |
+| Name                       | Size    | Value    | Comment                              |
+|----------------------------+---------+----------+--------------------------------------|
+| file header / magic number | 4 bytes | "CIS3"   |                                      |
+|                            | 1 byte  | "."      | part of file header?                 |
+| unknown                    | 3 byte  |          |                                      |
+| header size                | 2 bytes | 56 or 60 | greyscale: 56 bytes, color: 60 bytes |
+| data size                  | 4 bytes |          | file size - header size              |
+| unknown                    | 1 byte  | 0x00     | always zero?                         |
+| unknown                    | 1 byte  |          |                                      |
+| image width                | 2 byte  |          |                                      |
+| image height               | 2 byte  |          |                                      |
 
-to be continued
+(to be continued)
