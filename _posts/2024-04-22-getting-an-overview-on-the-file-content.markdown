@@ -62,7 +62,7 @@ The positions of the segments are as follows:
 |  86822577 | 644833451 | 558010874 |     532.2 | tiles 1000x1000 | 24701 tiles                 |
 | 644833451 | 644833911 |       460 |       0.0 | unknown4        |                             |
 
-# +TBLFM: $3=$-1-$-2::$4=$-1/1024/1024;%2.1f
+<!-- #+TBLFM: $3=$-1-$-2::$4=$-1/1024/1024;%2.1f -->
 
 Conclusion: There seem to be two sets of 500x500 tiles (also by size,
 as we [observed
