@@ -14,23 +14,32 @@ dd if=dsatnord.mp of=un3.dat bs=1 skip=13522709 count=2672062
 dd if=dsatnord.mp of=un4.dat bs=1 skip=644833451 count=460
 ```
 
-Now let us visualise the two larger segments `un2.dat` and `un3.dat`
-as follows: we interpret each byte as a greyscale value in the range
-0...255:
+Now let us visualise the first three segments (`un1.dat`, `un2.dat`,
+and `un3.dat`) as follows: we interpret each byte as a greyscale value
+in the range 0...255:
+
+```sh
+./src/mp.py -c vis_bytes --out img/un1.png un1.dat
+```
+
+This creates an image 1024 pixels in width, so each line represents
+1 Kilobyte.
+
+## unknown1
+
+![](/img/un1.png)
+
+We can see several segments with quite some regularities.
 
 ## unknown2
 
 ![](/img/un2.png)
-
-(image created with `./src/mp.py -c vis_bytes --out img/un2.png un2.dat`)
 
 We can distinguish several segments.
 
 ## unknown3
 
 ![](/img/un3.png)
-
-(image created with `./src/mp.py -c vis_bytes --out img/un3.png un3.dat`)
 
 We see two segments, each with a quite regular pattern. The regularity
 of the second segment is revealed already by `hexdump`:
