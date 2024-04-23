@@ -1,5 +1,7 @@
 ---
 title: Searching for the index
+keywords:
+  - index
 ---
 
 Now let us inspect the [unknown segments between
