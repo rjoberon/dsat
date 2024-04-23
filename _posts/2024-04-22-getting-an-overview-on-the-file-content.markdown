@@ -37,9 +37,9 @@ tiles and city database:
 
 ![](/img/dsatnord.png)
 
-Each pixel represents 1024 bytes (= 1 Kilobyte) of the original file.
+Each pixel represents 1024 bytes (= 1 Kibibyte) of the original file.
 The image is 1024 pixels wide such that each row represents
-1 Megabyte.
+1 Mebibyte.
 
 color legend:
 - blue: 24701 tiles of size 1000x1000
