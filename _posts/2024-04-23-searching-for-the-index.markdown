@@ -33,6 +33,14 @@ This creates an image 1024 pixels in width, so each line represents
 
 We can see several segments with quite some regularities.
 
+Skipping the first 16 bytes (which is likely the file header), and
+then interpreting each 4 bytes as unsigned integer (`./src/mp.py -c
+dump_ints un1.dat > un1_ints.tsv`), this segment basically contains
+the byte offsets of the tiles: 316020, 328719, 351371, 384572, 405841,
+446659, 483024, 525098, 566987, 619866, ...
+
+So the coordinates of the tiles must be stored somewhere else.
+
 ## unknown2
 
 ![](/img/un2.png)

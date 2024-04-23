@@ -9,6 +9,8 @@
 # Author: rja
 #
 # Changes:
+# 2024-04-23 (rja)
+# - implemented dump_ints
 # 2024-04-21 (rja)
 # - implemented vis_content and accompanying functions
 # - implemented vis_bytes and dump_bytes
@@ -194,10 +196,20 @@ def dump_bytes(fname):
             print(pos, "{:10d}".format(lint), sep='\t')
 
 
+def dump_ints(fname):
+    with open(fname, "rb") as f:
+        # skip 16 byte header
+        f.seek(16)
+        pos = 16
+        while ((b := f.read(4))):
+            lint = int.from_bytes(b, byteorder='little', signed=False)
+            print(pos, "{:10d}".format(lint), sep='\t')
+            pos += 4
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='read .mp files.', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('input', type=str, help='input file')
-    parser.add_argument('-c', '--command', choices=['offsets', 'extract', 'vis', 'dump_bytes', 'vis_bytes'], default='offsets')
+    parser.add_argument('-c', '--command', choices=['offsets', 'extract', 'vis', 'dump_bytes', 'vis_bytes', 'dump_ints'], default='offsets')
     parser.add_argument('--offset', type=int, help='offset to extract')
     parser.add_argument('--width', type=int, help='vis: image width', default=2**10)
     parser.add_argument('--bpp', type=int, help='vis: bytes per pixel', default=2**10)
@@ -214,5 +226,7 @@ if __name__ == '__main__':
         vis_content(args.input, args.out, args.bpp, args.width)
     elif args.command == 'dump_bytes':
         dump_bytes(args.input)
+    elif args.command == 'dump_ints':
+        dump_ints(args.input)
     elif args.command == 'vis_bytes':
         vis_bytes(args.input, args.out)
