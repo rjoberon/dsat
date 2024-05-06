@@ -19,7 +19,7 @@ corner. Visualising those coordinates for all tiles would yield a
 lattice pattern with the shape of Germany – something like this but
 much denser:
 
-![](img/germany.png)
+![](/img/germany.png)
 
 Of course, other technical solutions would be thinkable. Specifically,
 there is no need to use the lower left corner or a fixed position at
