@@ -72,7 +72,7 @@ different analyses to test that hypothesis. Among those were:
    [`seaborn.pairplot`](https://seaborn.pydata.org/generated/seaborn.pairplot.html). *(This
    could have led me to the result but it did not work with the whole
    part such that I used just the first 10kB of the data which was not
-   enough to recognize a pattern.)*
+   enough to recognise a pattern.)*
 2. Measuring distances between successive n-byte ints/floats and
    visualising their distribution using histograms (not really
    helpful) and scatterplots. *(The motivation behind that analysis
@@ -205,7 +205,7 @@ three distinct values with the following frequencies:
 |     2 |     24290 |
 
 So it is safe to assume that it encodes three different
-things. Assigning the colors red, green, and blue to 0, 1, and 2,
+things. Assigning the colours red, green, and blue to 0, 1, and 2,
 respectively, we get the following map:
 
 ![](/un3_1_float_color.png)
