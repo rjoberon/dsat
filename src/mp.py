@@ -9,6 +9,8 @@
 # Author: rja
 #
 # Changes:
+# 2024-05-06 (rja)
+# - added support to change width in vis_bytes
 # 2024-04-23 (rja)
 # - implemented dump_ints
 # 2024-04-21 (rja)
@@ -173,10 +175,9 @@ def extract_tile(finname, foutname, offset):
                 fout.write(b)
 
 
-def vis_bytes(fname, foutname):
+def vis_bytes(fname, foutname, width=1024):
     with open(fname, "rb") as f:
-        fbytes = os.path.getsize(fname)        # file size
-        width = 1024
+        fbytes = os.path.getsize(fname)         # file size
         height = fbytes // width + 1            # image height
         img = Image.new('L', (width, height), "black")
         pixels = img.load()
@@ -229,4 +230,4 @@ if __name__ == '__main__':
     elif args.command == 'dump_ints':
         dump_ints(args.input)
     elif args.command == 'vis_bytes':
-        vis_bytes(args.input, args.out)
+        vis_bytes(args.input, args.out, args.width)
