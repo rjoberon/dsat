@@ -59,13 +59,13 @@ Again, we can visualise the results to check whether we split the file correctly
 ./src/mp.py -c vis_bytes -o un3_2.png un3_2.dat
 ```
 
-The results (now shown here) look good.
+The results (not shown here) look good.
 
-Now my assumption was that there is an index for the tiles which
-contains a record (with the coordinates and possibly other
-information) for each tile. I started with the second part
-(`un3_2.dat`) since it showed quite some regularity and performed
-different analyses to test that hypothesis. Among those were:
+Now my assumption was that the index contains a record (with the
+coordinates and possibly other information) for each tile. I started
+with the second part (`un3_2.dat`) since it showed quite some
+regularity and performed different analyses to test that
+hypothesis. Among those were:
 
 1. Creating successive n-byte ints/floats and visualising their
    correlation using
@@ -78,7 +78,7 @@ different analyses to test that hypothesis. Among those were:
    helpful) and scatterplots. *(The motivation behind that analysis
    was that tiles of equal size should have approximately equally
    spaced coordinates, resulting in approximately the same distances
-   between coordinates. The result were some weird patterns which
+   between coordinates. The results were some weird patterns which
    indicated that there must be something regular.)*
 3. Visualising the distribution of the byte values. *(I saw some
    spikes but could draw no real conclusion.)*
@@ -177,9 +177,9 @@ number in little endian order, because the least significant bits
 significant bits should be more limited, as the coordinates are
 restricted to Germany.
 
-I saw a similar pattern with bytes 4 to 7, so I first read them into
-two 32 bit integers (little endian, unsigned) and visualised them in a
-scatter plot
+I saw a similar pattern with bytes 4 to 7, so I read the first 8 bytes
+into two 32 bit integers (little endian, unsigned) and visualised them
+in a scatter plot:
 
 ![](/img/un3_1_int.png)
 
@@ -194,9 +194,9 @@ ints, although that came one step later):
 
 The borders of the states of Germany and the main highways!
 
-Since we have just decoded 8 bytes of the 16 byte record, the
-remaining bytes certainly encode more information. Byte 13 has just
-three distinct values with the following frequencies:
+Since we have just decoded the first 8 bytes of the 16 byte record,
+the remaining bytes certainly encode more information. For example,
+byte 13 has just three distinct values with the following frequencies:
 
 | value | frequency |
 |-------+-----------|
@@ -204,11 +204,11 @@ three distinct values with the following frequencies:
 |     0 |     38260 |
 |     2 |     24290 |
 
-So it is safe to assume that it encodes three different
-things. Assigning the colours red, green, and blue to 0, 1, and 2,
+So it is safe to assume that it encodes three different things.
+Assigning the colours red, green, and blue to 0, 1, and 2,
 respectively, we get the following map:
 
-![](/un3_1_float_color.png)
+![](/img/un3_1_float_color.png)
 
 So 0 seems to encode highways, 1 state borders, and 3 the border of
 Germany (with some exceptions in the west).
@@ -218,9 +218,10 @@ left to decode for each record, overall, this is a big step forward to
 fully understand the structure of `dsatnord.mp`. So even though I have
 (again) not found the tile index (yet), I am very happy about this
 finding. It was also kind of unexpected, since the D-Sat 1 CD-ROM
-contains a file `dsat.vec` which consists of strings like "A100" and
+contains a file `dsat.vec` which contains strings like "A100" and
 "A10/E30" which are clearly names for highways. Thus I assumed that
-this vector data is (only) contained in that file.
+this vector data is (only) contained in that file but that is
+apparently not the case.
 
 Most of my analyses are contained in [this Jupyter
 Notebook](/src/Searching_the_Index.ipynb).
