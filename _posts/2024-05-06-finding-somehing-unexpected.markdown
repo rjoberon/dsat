@@ -62,9 +62,9 @@ Again, we can visualise the results to check whether we split the file correctly
 The results (not shown here) look good.
 
 Now my assumption was that the index contains a record (with the
-coordinates and possibly other information) for each tile. I started
-with the second part (`un3_2.dat`) since it showed quite some
-regularity and performed different analyses to test that
+coordinates and possibly other information) of fixed length for each
+tile. I started with the second part (`un3_2.dat`) since it showed
+quite some regularity and performed different analyses to test that
 hypothesis. Among those were:
 
 1. Creating successive n-byte ints/floats and visualising their
@@ -211,7 +211,7 @@ respectively, we get the following map:
 ![](/img/un3_1_float_color.png)
 
 So 0 seems to encode highways, 1 state borders, and 3 the border of
-Germany (with some exceptions in the west).
+Germany (with some exceptions mainly in the west).
 
 Although for the part `un3_2` we analysed here there are still 7 bytes
 left to decode for each record, overall, this is a big step forward to
