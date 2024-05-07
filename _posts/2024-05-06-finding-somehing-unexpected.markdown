@@ -210,6 +210,8 @@ respectively, we get the following map:
 
 ![](/img/un3_1_float_color.png)
 
+(I fixed the distortion with `plt.gca().set_aspect('equal')`.)
+
 So 0 seems to encode highways, 1 state borders, and 3 the border of
 Germany (with some exceptions mainly in the west).
 
