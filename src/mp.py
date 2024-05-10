@@ -9,6 +9,10 @@
 # Author: rja
 #
 # Changes:
+# 2024-05-10 (rja)
+# - changed fields in gen_offsets
+# 2024-05-09 (rja)
+# - refactored dump_offsets into a generator gen_offsets
 # 2024-05-06 (rja)
 # - added support to change width in vis_bytes
 # 2024-04-23 (rja)
@@ -26,24 +30,27 @@ from PIL import Image
 import os
 import cod
 
-version = "0.0.3"
+version = "0.0.4"
 
 
-def dump_offsets(fname):
+def gen_offsets(fname):
     with open(fname, "rb") as f:
         pos = -1
-        oldpos = -1
         while ((b := f.read(1))):
             pos += 1
             if b == b'\x43':                 # C
                 b = b + f.read(3)
                 if b == b'\x43\x49\x53\x33': # CIS3
                     # bytes 8+9
-                    c60, size, width, height = cod.parse_header(b + f.read(16))
-                    print(pos, pos - oldpos, c60, size, width, height, sep='\t')
-                    oldpos = pos
+                    hsize, dsize, width, height = cod.parse_header(b + f.read(16))
+                    yield (pos, hsize + dsize, width, height)
                     pos += 16
                 pos += 3
+
+
+def print_tuples(tuples, sep='\t'):
+    for t in tuples:
+        print(*t, sep=sep)
 
 
 def get_color(twidth, bsize, bpp):
@@ -220,7 +227,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if args.command == 'offsets':
-        dump_offsets(args.input)
+        print_tuples(gen_offsets(args.input))
     elif args.command == 'extract':
         extract_tile(args.input, args.out, args.offset)
     elif args.command == 'vis':
