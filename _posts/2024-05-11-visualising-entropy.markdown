@@ -12,17 +12,31 @@ In this post we will
 This post is based on [a Jupyter Notebook which contains the code to
 repeat the analysis](/src/Visualising_Entropy.ipynb).
 
-Apart from a much better understanding on how tiles are stored and accessed in D-Sat 1, our visually most appealing outcome is this picture:
+Apart from a much better understanding of how tiles are stored and accessed in D-Sat 1, our visually most appealing outcome is this picture:
 
 ![1000x1000 tiles in a 165 by 250 grid](/img/ve_tiles1000_165x250.png)
 
 You might recognise some known shape but wonder what the colours indicate. We will come to that but for now let's just say that the image is proof of the (at least partial) solution to the quest of finding the tile index.
 
-This post describes the journey towards getting (and understanding) that image in very much detail. Thus, it is rather long and probably contains too much information for some – and still, there are bits and pieces missing.
+This post describes the journey towards getting (and understanding)
+that image in very much detail. Thus, it is rather long and probably
+contains too much information for some – and still, there are bits and
+pieces missing. For example, many of the visualisations shown here
+were only produced after looking at the data in other formats (hex
+values, integer values, etc.)
 
 ## Extracting the byte offsets of the tiles
 
-[As described before](/2024/05/06/finding-somehing-unexpected.html), we are looking for information about the tiles that contain the satellite images. Since the tiles are stored sequentially in `dsatnord.mp`, the most simple way to identify them is their [byte offset](/2024/04/21/visualising-the-tile-size-distribution.html) within that file. If an index describing the tiles exists, that index likely contains the offsets of the tiles as pointers (integer numbers). Thus, we first extract those offsets from `dsatnord.mp`.
+[As described before](/2024/05/06/finding-somehing-unexpected.html),
+we are looking for information about the tiles that contain the
+satellite images. Since the tiles are stored sequentially in
+`dsatnord.mp`, the most simple way to identify them is their [byte
+offset](/2024/04/21/visualising-the-tile-size-distribution.html)
+within that file. If an index describing the tiles exists, that index
+likely contains the offsets of the tiles as pointers (integer
+numbers). Thus, we first extract those offsets from `dsatnord.mp`
+using the `gen_offsets` function in
+[`mp.py`](https://github.com/rjoberon/dsat/blob/main/src/mp.py).
 
 ## Searching for the byte offsets
 
