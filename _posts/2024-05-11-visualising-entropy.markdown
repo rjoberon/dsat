@@ -16,7 +16,7 @@ Apart from a much better understanding on how tiles are stored and accessed in D
 
 ![1000x1000 tiles in a 165 by 250 grid](/img/ve_tiles1000_165x250.png)
 
-You might recognize some known shape but wonder what the colors indicate. We will come to that but for now let's just say that the image is proof of the (at least partial) solution to the quest of finding the tile index.
+You might recognise some known shape but wonder what the colours indicate. We will come to that but for now let's just say that the image is proof of the (at least partial) solution to the quest of finding the tile index.
 
 This post describes the journey towards getting (and understanding) that image in very much detail. Thus, it is rather long and probably contains too much information for some – and still, there are bits and pieces missing.
 
@@ -297,10 +297,10 @@ The magenta line depicts the actual size of `dsatnord.mp`, so at the beginning a
 
 
 
-The undefined (`NaN`) values for size, width, and height at the end show that these are not offsets of tiles. We can now color the points in the plot according to tiles of which size they represent:
+The undefined (`NaN`) values for size, width, and height at the end show that these are not offsets of tiles. We can now colour the points in the plot according to tiles of which size they represent:
 
 
-![Offsets of tiles and their offsets (colored by tile size)](/img/ve_offsets_colored.png)
+![Offsets of tiles and their offsets (coloured by tile size)](/img/ve_offsets_colored.png)
 
 
 
@@ -309,14 +309,14 @@ Hardly visible are the 20 tiles of size 250x250 at the beginning, which are foll
 Clearly, it is interesting to understand the purpose of the values I have called "outliers" but for let us skip them:
 
 
-![Offsets of tiles and their offsets (colored by tile size, without outliers)](/img/ve_offsets_colored_wo_outliers.png)
+![Offsets of tiles and their offsets (coloured by tile size, without outliers)](/img/ve_offsets_colored_wo_outliers.png)
 
 
 
 That is the plot I started pondering about a lot. It turned out that at this scale it is difficult (if not impossible) to get an understanding of what we see (and why). So I started to zoom into some regions (actually, using interactive plots enabled by `%matplotlib notebook`):
 
 
-![Offsets of tiles and their offsets (colored by tile size, without
+![Offsets of tiles and their offsets (coloured by tile size, without
 outliers, zoomed)](/img/ve_offsets_colored_wo_outliers_zoom1.png)
 
 
@@ -324,7 +324,7 @@ outliers, zoomed)](/img/ve_offsets_colored_wo_outliers_zoom1.png)
 We can now see the 250x250 tiles at the very beginning, the first 169 tiles of size 500x500, the gaps caused by outliers, and then a "staircase"-like distribution of the remaining 2240 tiles of size 500x500. Let us further zoom into the first part before the gaps:
 
 
-![Offsets of tiles and their offsets (colored by tile size, without
+![Offsets of tiles and their offsets (coloured by tile size, without
 outliers, zoomed)](/img/ve_offsets_colored_wo_outliers_zoom2.png)
 
 
@@ -360,7 +360,7 @@ distribution of tile offsets clearly showed that several offsets were
 repeated. So let us plot the offsets of the 250x250 and 500x500 tiles
 only and highlight duplicate values in magenta:
 
-![Offsets of tiles and their offsets (colored by tile size, without
+![Offsets of tiles and their offsets (coloured by tile size, without
 outliers, duplicates highlighted)](/img/ve_offsets_colored_wo_outliers_duplicates.png)
 
 
@@ -371,7 +371,7 @@ We can see quite some duplicates and, apparently, they are the reason for the st
 When zooming in, we can observe a similar effect for the 1000x1000 tiles:
 
 
-![Offsets of tiles and their offsets (colored by tile size, without
+![Offsets of tiles and their offsets (coloured by tile size, without
 outliers, duplicates highlighted, zoomed)](/img/ve_offsets_colored_wo_outliers_duplicates_zoom1.png)
 
 
@@ -383,7 +383,7 @@ In such situations it helps to have someone else have a look and brainstorm what
 
 This would mean that I could just continue plotting the tiles in a rectangular grid without any need to know the shape of Germany. That came somewhat as a surprise and showed some simplicity that I did not expect.
 
-So the next zoom level would be the remaining 2240 tiles of size 500x500. However, my first tries did not work and I got a garbled image. Having a look at one of our initial plots, we can see that at offset 3052 the offset 16194771 for the first 500x500 tile is repeated 30 times and then there is a gap (from bytes 3172 to 4012) filled with the "outlier" value 4278772525. So let us skip this first (repeated) tile and use only the tiles from byte 4016 to byte 15972. This makes 2989 = (15972 − 4016) / 4 (repeated) tiles which can be factored into 7 * 7 * 61. So one gues could be to use a grid of 49 columns and 61 rows:
+So the next zoom level would be the remaining 2240 tiles of size 500x500. However, my first tries did not work and I got a garbled image. Having a look at one of our initial plots, we can see that at offset 3052 the offset 16194771 for the first 500x500 tile is repeated 30 times and then there is a gap (from bytes 3172 to 4012) filled with the "outlier" value 4278772525. So let us skip this first (repeated) tile and use only the tiles from byte 4016 to byte 15972. This makes 2989 = (15972 − 4016) / 4 (repeated) tiles which can be factored into 7 * 7 * 61. So one guess could be to use a grid of 49 columns and 61 rows:
 
 
 
@@ -414,7 +414,7 @@ What we can also see is that so far all tiles cover the whole of Germany althoug
 I hope you are as astonished as I was when I first saw that image. This definitely shows the north of Germany – the coastline and even the inland shape is clearly identifiable. Beyond this, there are more things to observe and explain:
 1. The horizontal bars east and west outside Germany are (again) caused by the repetition of the border tiles.
 2. We only see the northern half, since the southern half is stored on the second CD-ROM in the file `dsatsued.mp`. Almost we have not analysed that file so far, it is almost certain that it is structurally the same as `dsatnord.mp`.
-3. Although the color of each pixel just indicates the byte size of the 1000x1000 pixel tile at that location, we can clearly see some structure. In particular, we can identify the Ruhr area in the west and several large cities, for example, Hamburg, Bremen, Hannover, Berlin, and Dresden. The reason for that is that the plot basically **visualises entropy**: images of the complex structure of streets and houses in cities have a higher entropy and thus can not be compressed as well as low-entropy images of fields, meadows and woods. How well data can be compressed is a measure of its entropy.
+3. Although the colour of each pixel just indicates the byte size of the 1000x1000 pixel tile at that location, we can clearly see some structure. In particular, we can identify the Ruhr area in the west and several large cities, for example, Hamburg, Bremen, Hannover, Berlin, and Dresden. The reason for that is that the plot basically **visualises entropy**: images of the complex structure of streets and houses in cities have a higher entropy and thus can not be compressed as well as low-entropy images of fields, meadows and woods. How well data can be compressed is a measure of its entropy.
 4. Particularly in the middle of the image we can see "traces" of larger patches going from the bottom to the top in an angle of roughly 60° (measured from the bottom). My hypothesis is that these are caused by the orbit of the satellite who took the images. Depending on the weather (and other) conditions over a region during flyover, the quality of the images might be different, causing different entropy.
 
 
