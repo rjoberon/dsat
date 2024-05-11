@@ -1,5 +1,6 @@
 ---
 title: Visualising Entropy
+description: Understanding how the tile index works and how tiles are arranged in the file.
 ---
 
 Our quest to [find the tile index of D-Sat 1](/2024/04/23/searching-for-the-index.html) continues. [I have described before, what I mean with "tile index"](/2024/05/06/finding-somehing-unexpected.html) and I have also given a clue that I found something in the first part of the big blob of data `dsatnord.mp` which I named `un1.dat`.
@@ -40,7 +41,7 @@ using the `gen_offsets` function in
 
 ## Searching for the byte offsets
 
-Now we can search within `dsatnord.mp` for individual offsets to find candidate parts for the index. We can restrict our search to [the three parts whose function we do not know, yet](/2024/04/22/getting-an-overview-on-the-file-content.html) and we start with the first part `un1.dat`, ranging from byte 0 to byte 316020 in `dsatnord.mp`.
+Now we can search within `dsatnord.mp` for individual offsets to find candidate parts for the index. We can restrict our search to [the three parts whose function we do not know, yet](/2024/04/22/getting-an-overview-on-the-file-content.html), and we start with the first part `un1.dat`, ranging from byte 0 to byte 316020 in `dsatnord.mp`.
 
 How can we search for the offsets? One approach is to start with a handful of (randomly chosen) offsets.
 
@@ -53,7 +54,19 @@ random_offsets
     [30243192, 616207380, 203431531, 496386351, 376324742]
 
 
-Then there are two options to search for them: either we transform the offsets into byte values or we transform the bytes of the target file into integers. I chose the second approach. In both cases we need to decide how to represent an integer, which basically requires us to settle the parameters of [`int.from_bytes`](https://docs.python.org/3/library/stdtypes.html#int.from_bytes): number of bytes, byte order, and whether the value has a sign or not. Given the size of `dsatnord.mp`, two bytes (16 bit) are clearly not sufficient, so the next typical choice is 4 bytes (32 bit). To represent (absolute) offsets we do not need a sign and little endianness is the typical [byte order of the hardware](https://en.wikipedia.org/wiki/Endianness#Hardware) D-Sat was running on.
+Then there are two options to search for them: either we transform the
+offsets into byte values or we transform the bytes of the target file
+into integers. I chose the second approach. In both cases we need to
+decide how to represent an integer, which basically requires us to
+settle the parameters of
+[`int.from_bytes`](https://docs.python.org/3/library/stdtypes.html#int.from_bytes):
+number of bytes, byte order, and whether the value has a sign or
+not. Given the size of `dsatnord.mp` (644833911 bytes), two bytes (16
+bit) are clearly not sufficient, so the next typical choice is 4 bytes
+(32 bit). To represent (absolute) offsets we do not need a sign and
+little endianness is the typical [byte order of the
+hardware](https://en.wikipedia.org/wiki/Endianness#Hardware) D-Sat was
+running on.
 
 So we want to check all successive four bytes in the first part of `dsatnord.mp`, but we can not be sure that the index starts at byte 0. The simplest thing to do then is to just take every byte position and check the integer formed by the successive four bytes:
 
@@ -320,7 +333,8 @@ The undefined (`NaN`) values for size, width, and height at the end show that th
 
 Hardly visible are the 20 tiles of size 250x250 at the beginning, which are followed by 169 tiles of size 500x500 which are also hardly visible. Then follow some outliers, 2240 tiles of size 500x500, and 24701 tiles of size 1000x1000. The second half of the file does not contain offsets of tiles.
 
-Clearly, it is interesting to understand the purpose of the values I have called "outliers" but for let us skip them:
+Clearly, it is interesting to understand the purpose of the values I
+have called "outliers" but for now let us skip them:
 
 
 ![Offsets of tiles and their offsets (coloured by tile size, without outliers)](/img/ve_offsets_colored_wo_outliers.png)
@@ -345,7 +359,7 @@ outliers, zoomed)](/img/ve_offsets_colored_wo_outliers_zoom2.png)
 
 Now we can see a "staircase" pattern also for the first 169 tiles of size 500x500. Remember, that the tiles in `dsatnord.mp` are (almost all) stored adjacently without any gaps and that the vertical axis shows their byte offsets. So the flat parts of the curve are caused by tiles that occupy not much memory. That was one very important observation towards understanding how the tiles are ordered.
 
-But why should the tiles have vastly different memory sizes? After all, they represent squares with the same side length. The reason must be the compression ratio: some tiles could be better compressed. And the reason for that must be that the image they showed must have a lower entropy, that is, could be easier compressed. In our case of satellite images the reason could be that the landscape they showed is rather "dull", for example, a body of water.
+But why should the tiles have vastly different memory sizes? After all, they represent squares with the same side length. The reason must be the compression ratio: some tiles could be better compressed. And the reason for that must be that the image they show must have a lower entropy, that is, could be easier compressed. In our case of satellite images the reason could be that the landscape they show is rather "dull", for example, a body of water.
 
 In the meantime, I had also extracted and converted the 20 tiles of size 250x250 and checked how they were arranged: basically in a grid of 5 rows and 4 columns, stored in row-major order starting from the top left corner.
 
@@ -380,7 +394,8 @@ outliers, duplicates highlighted)](/img/ve_offsets_colored_wo_outliers_duplicate
 
 
 
-We can see quite some duplicates and, apparently, they are the reason for the staircase effect in the 2240 500x500 tiles.
+We can see quite some duplicates and, apparently, they are the reason
+for the staircase effect in the 2240 tiles of size 500x500.
 
 When zooming in, we can observe a similar effect for the 1000x1000 tiles:
 
@@ -397,7 +412,10 @@ In such situations it helps to have someone else have a look and brainstorm what
 
 This would mean that I could just continue plotting the tiles in a rectangular grid without any need to know the shape of Germany. That came somewhat as a surprise and showed some simplicity that I did not expect.
 
-So the next zoom level would be the remaining 2240 tiles of size 500x500. However, my first tries did not work and I got a garbled image. Having a look at one of our initial plots, we can see that at offset 3052 the offset 16194771 for the first 500x500 tile is repeated 30 times and then there is a gap (from bytes 3172 to 4012) filled with the "outlier" value 4278772525. So let us skip this first (repeated) tile and use only the tiles from byte 4016 to byte 15972. This makes 2989 = (15972 − 4016) / 4 (repeated) tiles which can be factored into 7 * 7 * 61. So one guess could be to use a grid of 49 columns and 61 rows:
+So the next zoom level would be the remaining 2240 tiles of size
+500x500. However, my first tries did not work and I got a garbled
+image. Having a look at one of our initial plots, we can see that at
+offset 3052 the offset 16194771 for the first 500x500 tile is repeated 30 times and then there is a gap (from bytes 3172 to 4012) filled with the "outlier" value 4278772525. So let us skip this first (repeated) tile and use only the tiles from byte 4016 to byte 15972. This makes 2989 = (15972 − 4016) / 4 (repeated) tiles which can be factored into 7 * 7 * 61. So one guess could be to use a grid of 7 * 7 = 49 columns and 61 rows:
 
 
 
@@ -415,7 +433,7 @@ We can clearly see some shearing distortion, which means we did not choose the r
 
 
 
-That looks familiar, doesn't it? The coast line of Germany is clearly visible. The vertical stripes outside of Germany are caused by the repetition of the "border" tiles, that is, the last tiles east and west that cover Germany. By not storing tiles that do not cover Germany, precious space could be saved on the CD-ROM. And by just repeating the border tiles, programming was simplified, since the shape of Germany was not required to load tiles – they tiles were just arranged in a rectangular grid.
+That looks familiar, doesn't it? The coast line of Germany is clearly visible. The vertical stripes outside of Germany are caused by the repetition of the "border" tiles, that is, the last tiles east and west that cover Germany. By not storing tiles that do not cover Germany, precious space could be saved on the CD-ROM. And by just repeating the border tiles, programming was simplified, since the shape of Germany was not required to load tiles – they tiles are just arranged in a rectangular grid.
 
 What we can also see is that so far all tiles cover the whole of Germany although we are analysing tiles from the first CD-ROM covering only the north of Germany. This will be different for the tiles of size 1000x1000 with the highest resolution (I spare you a detour and directly show you the correct result with 250 columns which I found as second guess after 200 columns):
 
@@ -425,11 +443,32 @@ What we can also see is that so far all tiles cover the whole of Germany althoug
 
 
 
-I hope you are as astonished as I was when I first saw that image. This definitely shows the north of Germany – the coastline and even the inland shape is clearly identifiable. Beyond this, there are more things to observe and explain:
-1. The horizontal bars east and west outside Germany are (again) caused by the repetition of the border tiles.
-2. We only see the northern half, since the southern half is stored on the second CD-ROM in the file `dsatsued.mp`. Almost we have not analysed that file so far, it is almost certain that it is structurally the same as `dsatnord.mp`.
-3. Although the colour of each pixel just indicates the byte size of the 1000x1000 pixel tile at that location, we can clearly see some structure. In particular, we can identify the Ruhr area in the west and several large cities, for example, Hamburg, Bremen, Hannover, Berlin, and Dresden. The reason for that is that the plot basically **visualises entropy**: images of the complex structure of streets and houses in cities have a higher entropy and thus can not be compressed as well as low-entropy images of fields, meadows and woods. How well data can be compressed is a measure of its entropy.
-4. Particularly in the middle of the image we can see "traces" of larger patches going from the bottom to the top in an angle of roughly 60° (measured from the bottom). My hypothesis is that these are caused by the orbit of the satellite who took the images. Depending on the weather (and other) conditions over a region during flyover, the quality of the images might be different, causing different entropy.
+I hope you are as astonished as I was when I first saw that
+image. This definitely shows the north of Germany – the coastline and
+even the inland shape is clearly identifiable. Beyond this, there are
+more things to observe and explain:
+1. The horizontal bars east and west outside Germany are (again)
+   caused by the repetition of the border tiles.
+2. We only see the northern half, since the southern half is stored on
+   the second CD-ROM in the file `dsatsued.mp`. Although we have not
+   analysed that file so far, it is almost certain that it is
+   structurally the same as `dsatnord.mp`.
+3. Although the colour of each pixel just indicates the byte size of
+   the 1000x1000 pixel tile at that location, we can clearly see some
+   structure. In particular, we can identify the Ruhr area in the west
+   and several large cities, for example, Hamburg, Bremen, Hannover,
+   Berlin, and Dresden. The reason for that is that the plot basically
+   **visualises entropy**: images of the complex structure of streets
+   and houses in cities have a higher entropy and thus can not be
+   compressed as well as low-entropy images of fields, meadows, and
+   woods. How well data can be compressed is related to its entropy.
+4. Particularly in the middle of the image we can see "traces" of
+   larger patches going from the bottom to the top in an angle of
+   roughly 60° (measured from the bottom). My hypothesis is that these
+   are caused by the orbit of the satellite who took the
+   images. Depending on the weather (and other) conditions over a
+   region during flyover, the quality of the images might be
+   different, causing different entropy.
 
 
-So we now know how the tiles are arranged and that there's basically a(nother) "pixel coordinate system". What is missing is information on how to translate between those and well-known coordinate systems and projections. From a pessimistic point of view this means we are not much farther with our knowledge than from [the first post](/2005/03/26/decoding-the-city-database.html). However, today I would like to take the optimistic point of view and state that we have already reverse-engineered a very big part of the file format of D-Sat 1.
+So we now know how the tiles are arranged and that there is basically a(nother) "pixel coordinate system". What is missing is information on how to translate between those and well-known coordinate systems and projections. From a pessimistic point of view this means we are not much farther with our knowledge than from [the first post](/2005/03/26/decoding-the-city-database.html). However, today I would like to take the optimistic point of view and state that we have already reverse-engineered a very big part of the file format of D-Sat 1.
