@@ -168,21 +168,7 @@ Does this make sense? Let us again have a look at [the number and sizes of tiles
 
 The 79001 numbers are way more than the 27130 tiles we have found. To better understand what is going on, let us plot the data:
 
-
-```python
-import matplotlib.pyplot as plt
-
-plt.rcParams['figure.figsize'] = (10, 6)
-plt.axhline(644833911, color="magenta", linewidth=0.5)  # size of dsatnord.mp
-plt.plot(offsets["un1off"], offsets["offset"], '.')
-plt.xlabel("offset of the value")
-plt.ylabel("value (= offset of the tile)")
-plt.show()
-```
-
-
-
-![Offsets of tiles and their offsets](img/ve_offsets.png)
+![Offsets of tiles and their offsets](/img/ve_offsets.png)
 
 
 
@@ -336,7 +322,7 @@ plt.show()
 
 
 
-![Offsets of tiles and their offsets (colored by tile size)](img/ve_offsets_colored.png)
+![Offsets of tiles and their offsets (colored by tile size)](/img/ve_offsets_colored.png)
 
 
 
@@ -357,7 +343,7 @@ plt.show()
 
 
 
-![Offsets of tiles and their offsets (colored by tile size, without outliers)](img/ve_offsets_colored_wo_outliers.png)
+![Offsets of tiles and their offsets (colored by tile size, without outliers)](/img/ve_offsets_colored_wo_outliers.png)
 
 
 
@@ -379,7 +365,7 @@ plt.show()
 
 
 ![Offsets of tiles and their offsets (colored by tile size, without
-outliers, zoomed)](img/ve_offsets_colored_wo_outliers_zoom1.png)
+outliers, zoomed)](/img/ve_offsets_colored_wo_outliers_zoom1.png)
 
 
 
@@ -401,7 +387,7 @@ plt.show()
 
 
 ![Offsets of tiles and their offsets (colored by tile size, without
-outliers, zoomed)](img/ve_offsets_colored_wo_outliers_zoom2.png)
+outliers, zoomed)](/img/ve_offsets_colored_wo_outliers_zoom2.png)
 
 
 
@@ -427,7 +413,7 @@ plt.show()
 ```
 
 
-![250x250 tiles in a 5 by 4 grid](img/ve_tiles250.png)
+![250x250 tiles in a 5 by 4 grid](/img/ve_tiles250.png)
 
 
 
@@ -449,7 +435,7 @@ plt.show()
 
 
 
-![500x500 tiles in a 13 by 13 grid](img/ve_tiles500_13x13.png)
+![500x500 tiles in a 13 by 13 grid](/img/ve_tiles500_13x13.png)
 
 
 
@@ -615,7 +601,7 @@ plt.show()
 
 
 ![Offsets of tiles and their offsets (colored by tile size, without
-outliers, duplicates highlighted)](img/ve_offsets_colored_wo_outliers_duplicates.png)
+outliers, duplicates highlighted)](/img/ve_offsets_colored_wo_outliers_duplicates.png)
 
 
 
@@ -638,7 +624,7 @@ plt.show()
 
 
 ![Offsets of tiles and their offsets (colored by tile size, without
-outliers, duplicates highlighted, zoomed)](img/ve_offsets_colored_wo_outliers_duplicates_zoom1.png)
+outliers, duplicates highlighted, zoomed)](/img/ve_offsets_colored_wo_outliers_duplicates_zoom1.png)
 
 
 
@@ -666,7 +652,7 @@ plt.show()
 
 
 
-![500x500 tiles in a 61 by 49 grid](img/ve_tiles500_61x49.png)
+![500x500 tiles in a 61 by 49 grid](/img/ve_tiles500_61x49.png)
 
 
 
@@ -687,7 +673,7 @@ plt.show()
 ```
 
 
-![500x500 tiles in a 59 by 50 grid](img/ve_tiles500_59x50.png)
+![500x500 tiles in a 59 by 50 grid](/img/ve_tiles500_59x50.png)
 
 
 
@@ -714,7 +700,7 @@ plt.show()
 
 
 
-![1000x1000 tiles in a 165 by 250 grid](img/ve_tiles1000_165x250.png)
+![1000x1000 tiles in a 165 by 250 grid](/img/ve_tiles1000_165x250.png)
 
 
 
