@@ -2,16 +2,19 @@
 title: Visualising Entropy
 ---
 
-Our quest to [find the tile index of D-Sat 1](https://dsat.igada.de/2024/04/23/searching-for-the-index.html) continues. [I have described before, what I mean with "tile index"](https://dsat.igada.de/2024/05/06/finding-somehing-unexpected.html) and I have also given a clue that I found something in the first part of the big blob of data `dsatnord.mp` which I named `un1.dat`.
+Our quest to [find the tile index of D-Sat 1](/2024/04/23/searching-for-the-index.html) continues. [I have described before, what I mean with "tile index"](/2024/05/06/finding-somehing-unexpected.html) and I have also given a clue that I found something in the first part of the big blob of data `dsatnord.mp` which I named `un1.dat`.
 
 In this post we will
 1. extract the byte offsets of the tiles from `dsatnord.mp`,
-2. search for those byte offsets in [the unknown parts](https://dsat.igada.de/2024/04/23/searching-for-the-index.html) of `dsatnord.mp`, and
+2. search for those byte offsets in [the unknown parts](/2024/04/23/searching-for-the-index.html) of `dsatnord.mp`, and
 3. analyse the found data.
+
+This post is based on [a Jupyter Notebook which contains the code to
+repeat the analysis](/src/Visualising_Entropy.ipynb).
 
 Apart from a much better understanding on how tiles are stored and accessed in D-Sat 1, our visually most appealing outcome is this picture:
 
-![1000x1000 tiles in a 165 by 250 grid](img/ve_tiles1000_165x250.png)
+![1000x1000 tiles in a 165 by 250 grid](/img/ve_tiles1000_165x250.png)
 
 You might recognize some known shape but wonder what the colors indicate. We will come to that but for now let's just say that the image is proof of the (at least partial) solution to the quest of finding the tile index.
 
@@ -19,134 +22,13 @@ This post describes the journey towards getting (and understanding) that image i
 
 ## Extracting the byte offsets of the tiles
 
-[As described before](https://dsat.igada.de/2024/05/06/finding-somehing-unexpected.html), we are looking for information about the tiles that contain the satellite images. Since the tiles are stored sequentially in `dsatnord.mp`, the most simple way to identify them is their [byte offset](https://dsat.igada.de/2024/04/21/visualising-the-tile-size-distribution.html) within that file. If an index describing the tiles exists, that index likely contains the offsets of the tiles as pointers (integer numbers). Thus, we first extract those offsets from `dsatnord.mp`.
-
-
-```python
-import mp
-import pandas as pd
-
-tiles = pd.DataFrame(mp.gen_offsets("../dsatnord.mp"), columns=["offset", "size", "width", "height"])
-tiles
-```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>offset</th>
-      <th>size</th>
-      <th>width</th>
-      <th>height</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>316020</td>
-      <td>12699</td>
-      <td>250</td>
-      <td>250</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>328719</td>
-      <td>22652</td>
-      <td>250</td>
-      <td>250</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>351371</td>
-      <td>33201</td>
-      <td>250</td>
-      <td>250</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>384572</td>
-      <td>21269</td>
-      <td>250</td>
-      <td>250</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>405841</td>
-      <td>40818</td>
-      <td>250</td>
-      <td>250</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>27125</th>
-      <td>644801895</td>
-      <td>936</td>
-      <td>1000</td>
-      <td>1000</td>
-    </tr>
-    <tr>
-      <th>27126</th>
-      <td>644802831</td>
-      <td>936</td>
-      <td>1000</td>
-      <td>1000</td>
-    </tr>
-    <tr>
-      <th>27127</th>
-      <td>644803767</td>
-      <td>936</td>
-      <td>1000</td>
-      <td>1000</td>
-    </tr>
-    <tr>
-      <th>27128</th>
-      <td>644804703</td>
-      <td>936</td>
-      <td>1000</td>
-      <td>1000</td>
-    </tr>
-    <tr>
-      <th>27129</th>
-      <td>644824916</td>
-      <td>8479</td>
-      <td>1000</td>
-      <td>1000</td>
-    </tr>
-  </tbody>
-</table>
-<p>27130 rows × 4 columns</p>
-</div>
-
-
+[As described before](/2024/05/06/finding-somehing-unexpected.html), we are looking for information about the tiles that contain the satellite images. Since the tiles are stored sequentially in `dsatnord.mp`, the most simple way to identify them is their [byte offset](/2024/04/21/visualising-the-tile-size-distribution.html) within that file. If an index describing the tiles exists, that index likely contains the offsets of the tiles as pointers (integer numbers). Thus, we first extract those offsets from `dsatnord.mp`.
 
 ## Searching for the byte offsets
 
-Now we can search within `dsatnord.mp` for individual offsets to find candidate parts for the index. We can restrict our search to [the three parts whose function we do not know, yet](https://dsat.igada.de/2024/04/22/getting-an-overview-on-the-file-content.html) and we start with the first part `un1.dat`, ranging from byte 0 to byte 316020 in `dsatnord.mp`.
+Now we can search within `dsatnord.mp` for individual offsets to find candidate parts for the index. We can restrict our search to [the three parts whose function we do not know, yet](/2024/04/22/getting-an-overview-on-the-file-content.html) and we start with the first part `un1.dat`, ranging from byte 0 to byte 316020 in `dsatnord.mp`.
 
-How can we search for the offsets? One approach is to start with a handful of (randomly chosen) offsets:
+How can we search for the offsets? One approach is to start with a handful of (randomly chosen) offsets.
 
 
 ```python
@@ -154,11 +36,7 @@ random_offsets = tiles.sample(5).offset.to_list()
 random_offsets
 ```
 
-
-
-
     [30243192, 616207380, 203431531, 496386351, 376324742]
-
 
 
 Then there are two options to search for them: either we transform the offsets into byte values or we transform the bytes of the target file into integers. I chose the second approach. In both cases we need to decide how to represent an integer, which basically requires us to settle the parameters of [`int.from_bytes`](https://docs.python.org/3/library/stdtypes.html#int.from_bytes): number of bytes, byte order, and whether the value has a sign or not. Given the size of `dsatnord.mp`, two bytes (16 bit) are clearly not sufficient, so the next typical choice is 4 bytes (32 bit). To represent (absolute) offsets we do not need a sign and little endianness is the typical [byte order of the hardware](https://en.wikipedia.org/wiki/Endianness#Hardware) D-Sat was running on.
@@ -182,7 +60,7 @@ with open("../dsatnord.mp", "rb") as f:
     found offset 616207380 at byte position 176132
 
 
-That looks good! Some more analysis revealed that actually *all* tile offsets are contained in the first part `un1.dat`. Furthermore, there are (almost) no gaps between offsets, that is, (almost) each successive 4 byte integer represents an offset of a tile. This also means that this index does not contain any coordinates! This was quite unexpected and the reason why [I continued searching for the index](https://dsat.igada.de/2024/05/06/finding-somehing-unexpected.html), although I already knew that `un1.dat` contains the offsets.
+That looks good! Some more analysis revealed that actually *all* tile offsets are contained in the first part `un1.dat`. Furthermore, there are (almost) no gaps between offsets, that is, (almost) each successive 4 byte integer represents an offset of a tile. This also means that this index does not contain any coordinates! This was quite unexpected and the reason why [I continued searching for the index](/2024/05/06/finding-somehing-unexpected.html), although I already knew that `un1.dat` contains the offsets.
 Last but not least, the first offset starts at byte 16, so I assume the first 16 bytes of `dsatnord.mp` constitute the file header, which looks as follows:
 
 ```
@@ -192,22 +70,6 @@ Last but not least, the first offset starts at byte 16, so I assume the first 16
 ## Analysing the data
 
 Now we want to understand how the index is structured. Therefore, we first read the offsets into a dataframe:
-
-
-```python
-with open("../dsatnord.mp", "rb") as f:
-    pos = 16
-    f.seek(pos)           # skip file header
-    offsets = []
-    while ((b := f.read(4)) and pos < 316020):
-        offsets.append([pos, int.from_bytes(b, byteorder='little', signed=False)])
-        pos += 4
-offsets = pd.DataFrame(offsets, columns=["un1off", "offset"])
-offsets
-```
-
-
-
 
 <div>
 <style scoped>
@@ -219,7 +81,7 @@ offsets
         vertical-align: top;
     }
 
-    .dataframe thead th {
+    .dataframe tr td {
         text-align: right;
     }
 </style>
@@ -294,10 +156,10 @@ offsets
 
 
 
-Does this make sense? Let us again have a look at [the number and sizes of tiles we have found](https://dsat.igada.de/2024/04/22/getting-an-overview-on-the-file-content.html):
+Does this make sense? Let us again have a look at [the number and sizes of tiles we have found](/2024/04/22/getting-an-overview-on-the-file-content.html):
 
 | start offset | end offset | tile size | number of tiles |
-| ------------ | ---------- | --------- | --------------- |
+| -----------: | ---------: | --------: | --------------: |
 | 316020       | 1070097    | 250x250   | 20              |
 | 1070097      | 10127037   | 500x500   | 169             |
 | 16194771     | 86822577   | 500x500   | 2240            |
