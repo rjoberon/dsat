@@ -11,7 +11,7 @@ In this post we will
 
 Apart from a much better understanding on how tiles are stored and accessed in D-Sat 1, our visually most appealing outcome is this picture:
 
-(picture of the 1000x1000 tiles)
+![1000x1000 tiles in a 165 by 250 grid](img/ve_tiles1000_165x250.png)
 
 You might recognize some known shape but wonder what the colors indicate. We will come to that but for now let's just say that the image is proof of the (at least partial) solution to the quest of finding the tile index.
 
