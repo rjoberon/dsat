@@ -1,5 +1,6 @@
 ---
 title: Finding the tiles
+thumbnail: offsets_zoom.png
 ---
 
 To find the image tiles in `dsatnord.mp` and possibly decode them, we

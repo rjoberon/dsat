@@ -1,3 +1,7 @@
+---
+title: D-Sat
+layout: home
+---
 An endeavour to reverse-engineer the file format of D-Sat 1.
 
 ## What is it about?

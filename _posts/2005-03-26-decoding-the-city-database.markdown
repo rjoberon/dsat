@@ -1,5 +1,6 @@
 ---
 title: Decoding the city database
+thumbnail: dsat1_dekodiert_1.png
 ---
 
 *Note: This post is a copy of the original web page I set up in 2005.*

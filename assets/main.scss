@@ -1,0 +1,18 @@
+---
+---
+
+@import "minima";
+
+
+.post-list li {
+    display: flex;
+}
+
+.post-list div {
+    width: 128px;
+}
+
+.post-list .snippet {
+    flex-grow: 1;
+    padding-left: .5em
+}
