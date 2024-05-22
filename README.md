@@ -1,6 +1,7 @@
 ---
 title: D-Sat
 layout: home
+permalink: index.html
 ---
 An endeavour to reverse-engineer the file format of D-Sat 1.
 
