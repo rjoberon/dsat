@@ -1,6 +1,8 @@
 ---
 title: Getting an overview on the file content
 image: /img/dsatnord.png
+description: Putting the bits and pieces we know about the file together.
+
 ---
 
 In [the last

@@ -1,5 +1,6 @@
 ---
 title: Learning about the image format
+description: The tiles are stored in the lightning strike wavelet-compressed raster image format.
 ---
 
 

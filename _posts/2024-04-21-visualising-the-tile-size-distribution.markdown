@@ -1,6 +1,7 @@
 ---
 title: Visualising the tile size distribution
 image: /img/offsets_sizes.png
+description: What's the size of tiles and how are they arranged in the file?
 ---
 
 With [mp.py](/src/mp.py)'s `offsets` command we can dump tile byte

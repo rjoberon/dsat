@@ -1,6 +1,7 @@
 ---
 title: Decoding the city database
 image: /img/dsat1_dekodiert_1.png
+description: A database of German cities is found together with their coordinates.
 ---
 
 *Note: This post is a copy of the original web page I set up in 2005.*

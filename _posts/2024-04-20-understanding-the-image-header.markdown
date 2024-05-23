@@ -1,5 +1,6 @@
 ---
 title: Understanding the image header
+description: The image header contains the size of the file and the header.
 ---
 
 One important question remains: Are the tiles in `dsatnord.mp` stored
