@@ -1,6 +1,6 @@
 ---
 title: Viewing tiles with Firefox
-thumbnail: screenshot_firefox_plugin.png
+image: /img/screenshot_firefox_plugin.png
 ---
 
 Knowing the offsets of (potential) tiles, we can pick one (56057877)

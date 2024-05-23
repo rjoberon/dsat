@@ -1,7 +1,7 @@
 ---
 title: Visualising Entropy
 description: Understanding how the tile index works and how tiles are arranged in the file.
-thumbnail: ve_tiles1000_165x250.png
+image: /img/ve_tiles1000_165x250.png
 ---
 
 Our quest to [find the tile index of D-Sat 1](/2024/04/23/searching-for-the-index.html) continues. [I have described before, what I mean with "tile index"](/2024/05/06/finding-somehing-unexpected.html) and I have also given a clue that I found something in the first part of the big blob of data `dsatnord.mp` which I named `un1.dat`.

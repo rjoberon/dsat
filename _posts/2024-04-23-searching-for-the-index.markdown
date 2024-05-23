@@ -2,7 +2,7 @@
 title: Searching for the index
 keywords:
   - index
-thumbnail: un1.png
+image: /img/un1.png
 ---
 
 Now let us inspect the [unknown segments between

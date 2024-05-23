@@ -1,6 +1,6 @@
 ---
 title: Finding something unexpected
-thumbnail: un3_1_int.png
+image: /img/un3_1_int.png
 ---
 
 After having [visualised the "uncharted" parts of

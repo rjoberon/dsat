@@ -1,0 +1,12 @@
+* Notes
+** Next Steps
+
+- [ ] test [[https://en.wikipedia.org/wiki/SK-42_reference_system][SK-42]] and derivatives (check older [[https://groups.google.com/g/de.org.ccc/c/xlaNafyxmrM/m/hXZj7J5ksc8J][usenet discussion on how
+  to decode the geo coordinates]])
+
+** Files
+
+| file name     | comment                                   |
+|---------------+-------------------------------------------|
+| ~dsatnord.mp~ | data for D-Sat 1 CD 1                     |
+| ~NPLS32.DLL~  | [[https://en.wikipedia.org/wiki/NPAPI][NPAPI]] browser plugin for Netscape/Firefox |

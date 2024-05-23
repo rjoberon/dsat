@@ -1,6 +1,6 @@
 ---
 title: Getting an overview on the file content
-thumbnail: dsatnord.png
+image: /img/dsatnord.png
 ---
 
 In [the last

@@ -15,8 +15,8 @@ layout: default
       {%- for post in site.posts -%}
       <li>
         <div>
-          {%- if post.thumbnail -%}
-            <img src="/img/thumbs/{{ post.thumbnail }}" />
+          {%- if post.image -%}
+            <img src="{{ post.image | replace:'/img/','/img/thumbs/' }}" />
           {%- endif -%}
         </div>
         <div class="snippet">
