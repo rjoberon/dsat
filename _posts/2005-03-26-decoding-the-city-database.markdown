@@ -29,7 +29,7 @@ database and to use that data to find out the used coordinate system.
 The file **dsatnord.mp** contains the whole city database (dsatsued.mp
 also, but not tested). The first location is **\"Aach\"**, offset
 unknown (extracted it once and then forgot it \...). I decoded the
-main parts of the city database (was\'n so difficult, see below), but
+main parts of the city database (wasn't so difficult, see below), but
 I recognized that the coordinates in the database differ from the
 coordinates which are shown if I put the mouse pointer on the basis of
 the \"town sign\".
