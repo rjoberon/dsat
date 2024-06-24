@@ -38,8 +38,10 @@ seq:
     doc: 2240 color tiles of size 500x500 (zoom level 2)
   - id: tiles_zoom3
     type: tiles
-    size: 558010874
-    doc: 24701 greyscale tiles of size 1000x1000 (zoom level 3)
+    size: 558010874 # blog post
+    # size: 558010818 # last offset from "mp.py -c offsets dsatnord.mp"
+    # size: 558002339 # second-to-last offset from "mp.py -c offsets dsatnord.mp"
+    doc: 24700 greyscale tiles of size 1000x1000 (zoom level 3)
   - id: unknown4
     size: 460
 types:
@@ -49,13 +51,10 @@ types:
       - id: magic
         contents: 'P12'
       - id: delim
-        size: 1
-        valid:
-          eq: 0x00
+        contents: [0x00]
       - id: dsat
         contents: 'DSAT'
       - id: unknown
-        size: 8
         contents: [0x98, 0x34, 0x01, 0x00, 0xf2, 0x2d, 0x0f, 0x00]
 # tile offsets → https://dsat.igada.de/2024/05/11/visualising-entropy.html
   offsets:
@@ -74,7 +73,7 @@ types:
       - id: name
         type: str
         size: 40
-        encoding: latin-1
+        encoding: ISO-8859-1
       - id: position
         type: position
   position:
@@ -83,12 +82,9 @@ types:
         type: f8
       - id: latitude
         type: f8
-      - id: unknown1
-        contents: [0x65]
-      - id: unknown2
-        size: 1
       - id: unknown3
-        contents: [0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
+        # contents: [0x09, 0x00, 0x00, 0x00, 0x00, 0x00]
+        size: 8
 # image tiles → https://dsat.igada.de/2024/04/22/getting-an-overview-on-the-file-content.html
   tiles:
     seq:
