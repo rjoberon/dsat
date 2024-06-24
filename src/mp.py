@@ -9,6 +9,8 @@
 # Author: rja
 #
 # Changes:
+# 2024-06-24 (rja)
+# - moved "parse_header" from cod.py into this file (parse_cod_header)
 # 2024-05-10 (rja)
 # - changed fields in gen_offsets
 # 2024-05-09 (rja)
@@ -28,9 +30,17 @@
 import argparse
 from PIL import Image
 import os
-import cod
 
-version = "0.0.4"
+version = "0.0.5"
+
+
+def parse_cod_header(hbytes):
+    """Parse and return the (so far) known header fields."""
+    hsize  = int.from_bytes(hbytes[8:10], byteorder='little', signed=False)  # header size
+    dsize  = int.from_bytes(hbytes[10:14], byteorder='little', signed=False) # data size
+    width  = int.from_bytes(hbytes[16:18], byteorder='little', signed=False)
+    height = int.from_bytes(hbytes[18:20], byteorder='little', signed=False)
+    return hsize, dsize, width, height
 
 
 def gen_offsets(fname):
@@ -42,7 +52,7 @@ def gen_offsets(fname):
                 b = b + f.read(3)
                 if b == b'\x43\x49\x53\x33': # CIS3
                     # bytes 8+9
-                    hsize, dsize, width, height = cod.parse_header(b + f.read(16))
+                    hsize, dsize, width, height = parse_cod_header(b + f.read(16))
                     yield (pos, hsize + dsize, width, height)
                     pos += 16
                 pos += 3
