@@ -92,8 +92,7 @@ types:
     seq:
       - id: tiles
         type: ls_image
-        repeat: until # FIXME: how to model?
-        repeat-until:
+        repeat: eos # FIXME: how to model?
   ls_image:
     meta:
       id: cis
@@ -106,9 +105,10 @@ types:
     seq:
       - id: header
         type: ls_header
+        size: header.header_size
       - id: data
         type: ls_data
-        size: data_size
+        size: header.data_size
 # Lightning Strike image format → https://dsat.igada.de/2024/04/20/understanding-the-image-header.html
   ls_header:
     seq:
@@ -117,14 +117,14 @@ types:
       - id: unknown1
         contents: "."
       - id: unknown2
+        size: 3
       - id: header_size
         type: u2
-        contents: [56, 60]
+        doc: 56 for greyscale, 60 for color
       - id: data_size
         type: u4
       - id: unknown3
-        size: 1
-        contents: [0x00]
+        contents: [0]
       - id: unknown4
         size: 1
       - id: width
@@ -134,4 +134,4 @@ types:
   ls_data:
     seq:
       - id: unknown
-        size: header.data_size
+        size-eos: true
