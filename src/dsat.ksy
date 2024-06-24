@@ -13,14 +13,17 @@ seq:
     doc: offsets of the tiles
   - id: tiles_zoom0
     type: tiles
+    size: 754077
     doc: 20 color tiles of size 250x250 (zoom level 0)
   - id: tiles_zoom1
     type: tiles
+    size: 9056940
     doc: 169 color tiles of size 500x500 (zoom level 1)
   - id: unknown2
     size: 2538456
   - id: cities
     type: cities
+    size: 13394 * 64
     doc: list of 13394 cities and their coordinates
   - id: unknown3_1
     size: 980862
@@ -29,9 +32,11 @@ seq:
     doc: borders and highways
   - id: tiles_zoom2
     type: tiles
+    size: 70627806
     doc: 2240 color tiles of size 500x500 (zoom level 2)
   - id: tiles_zoom3
     type: tiles
+    size: 558010874
     doc: 24701 greyscale tiles of size 1000x1000 (zoom level 3)
   - id: unknown4
     size: 460
