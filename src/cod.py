@@ -9,6 +9,8 @@
 # Author: rja
 #
 # Changes:
+# 2024-06-24 (rja)
+# - migrated to generated parser by kaitai struct
 # 2024-05-10 (rja)
 # - renamed variables to reflect header size and data size
 # 2024-04-20 (rja)
@@ -16,8 +18,9 @@
 
 import os
 import argparse
+from cis import Cis
 
-version = "0.0.3"
+version = "0.1.0"
 
 # | image             | width | height |  size |   b10 | size - b10 |  b16 |  b18 |
 # |-------------------+-------+--------+-------+-------+------------+------+------|
@@ -28,31 +31,13 @@ version = "0.0.3"
 # #+TBLFM: $6=$-2-$-1
 
 
-def print_bytes(fname, n=20):
-    """Print the first n bytes of the file as 16 bit little endian unsigned ints."""
-    fsize = os.path.getsize(fname)
-    print("size =", fsize)
-    with open(fname, "rb") as f:
-        for i in range(n):
-            f.seek(i)
-            b = f.read(2)
-            lint = int.from_bytes(b, byteorder='little', signed=False) # unsigned little endian
-            print(i, "{:10d}".format(lint), sep='\t')
-
-
-def print_header(fname):
-    with open(fname, "rb") as f:
-        hsize, dsize, width, height = parse_header(f.read(20))
-        print(hsize, dsize, width, height, sep='\t')
-
-
-def parse_header(hbytes):
-    """Parse and return the (so far) known header fields."""
-    hsize  = int.from_bytes(hbytes[8:10], byteorder='little', signed=False)  # header size
-    dsize  = int.from_bytes(hbytes[10:14], byteorder='little', signed=False) # data size
-    width  = int.from_bytes(hbytes[16:18], byteorder='little', signed=False)
-    height = int.from_bytes(hbytes[18:20], byteorder='little', signed=False)
-    return hsize, dsize, width, height
+def print_bytes(bytes):
+    """Print the bytes as hex."""
+    for i, b in enumerate(bytes):
+        print("{:02x}".format(b), end=' ')
+        if (i + 1) % 16 == 0:
+            print()
+    print()
 
 
 if __name__ == '__main__':
@@ -63,5 +48,10 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-#    print_bytes(args.input)
-    print_header(args.input)
+    c = Cis.from_file(args.input)
+
+    print("width", c.header.width, sep=':\t')
+    print("height", c.header.height, sep=':\t')
+    print("header", c.header.header_size, sep=':\t')
+    print("data", c.header.data_size, sep=':\t')
+    print_bytes(c.header.unknown5)

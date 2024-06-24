@@ -11,7 +11,7 @@ meta:
 seq:
   - id: header
     type: ls_header
-    size: header.header_size
+#    size: header.header_size → gives error in Python code
   - id: data
     type: ls_data
     size: header.data_size
@@ -39,6 +39,8 @@ types:
       - id: height
         type: u2
         doc: image height
+      - id: unknown5
+        size: header_size - 20
   ls_data:
     seq:
       - id: unknown
