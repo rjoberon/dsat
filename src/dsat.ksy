@@ -38,12 +38,27 @@ seq:
     doc: 2240 color tiles of size 500x500 (zoom level 2)
   - id: tiles_zoom3
     type: tiles
-    size: 558010874 # blog post
-    # size: 558010818 # last offset from "mp.py -c offsets dsatnord.mp"
-    # size: 558002339 # second-to-last offset from "mp.py -c offsets dsatnord.mp"
+    size: 644804703 + 936 - 86822577
+    # last working offset; extracted from
+    # from "mp.py -c offsets dsatnord.mp"
+    # by taking second-to-last start offset 644804703,
+    # adding the tile size (936) and
+    # subtracting the offset of the first 1000x1000 tile (86822577)
+    # → there is a gap to the last tile
     doc: 24700 greyscale tiles of size 1000x1000 (zoom level 3)
+  - id: unknown4new
+    size: 644824916 - 644804703 - 936
+    doc: gap between last tile and second-to-last tile
+    # offset of last tile (644824916) minus offset of second-to-last
+    # (644804703) tile plus its size (936)
+    type: const_01 # FIXME: does not work as expected, see below
   - id: unknown4
-    size: 460
+    size: 8995
+    doc: starts also with "CIS3" but header size is 0 → broken?
+    # that's the last tile mp.py outputs because it finds the magic
+    # number but it is not a complete tile
+#  - id: unknown4_01
+#    size
 types:
   header:
     # 50 31 32 00 44 53 41 54  98 34 01 00 f2 2d 0f 00  |P12.DSAT.4...-..|
@@ -91,3 +106,24 @@ types:
       - id: tiles
         type: cis
         repeat: eos # FIXME: how to model?
+
+# workaround: types for constant repetition of some values
+# FIXME: does not work as expected
+#        i.e., ksv only highlights one 0x01 value, not all
+  const_00:
+    seq:
+      - id: value
+        contents: [0x00]
+  const_01:
+    seq:
+      - id: value
+        contents: [0x01]
+  const_ff:
+    seq:
+      - id: value
+        type: const_ff_val
+        repeat: eos
+  const_ff_val:
+    seq:
+      - id: value
+        size: 1 #contents: [0x01]
