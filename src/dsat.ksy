@@ -11,7 +11,7 @@ seq:
   - id: header
     type: header
   - id: tile_offsets
-    type: offsets
+    type: offset_list
     doc: offsets of the tiles
   - id: tiles_zoom0
     type: tiles
@@ -72,10 +72,52 @@ types:
       - id: unknown
         contents: [0x98, 0x34, 0x01, 0x00, 0xf2, 0x2d, 0x0f, 0x00]
 # tile offsets → https://dsat.igada.de/2024/05/11/visualising-entropy.html
+  offset_list:
+    seq:
+      - id: offsets_zoom0
+        size: 20*4
+        type: offsets
+        doc: |
+          20 offsets for 20 color tiles of size 250x250 (zoom level 0)
+          arranged in a grid of 4 columns and 5 rows
+      - id: offsets_zoom1
+        size: 169*4
+        type: offsets
+        doc: |
+          169 offsets for 169 color tiles of size 500x500 (zoom level 1)
+          arranged in a grid of 13 columns and 13 rows
+      - id: here_be_dragons1
+        size: 2280
+        doc: not clear, what this is
+      - id: here_be_dragons2
+        size: 30*4
+        doc: |
+          fixed value 16194771 (offset of first 500x500 tile)
+          repeated 30 times (for whatever reason)
+      - id: here_be_dragons3
+        size: 840
+        doc: not clear, what this is (fixed value 4278772525)
+      - id: offsets_zoom2
+        # FIXME: seem to start 4 bytes too early
+        size: 15972 - 4016 # 2989 offsets of 4 byte each
+        type: offsets
+        doc: |
+          3020 offsets for 2240 color tiles of size 500x500 (zoom level 2)
+          arranged in a grid of 50 columns and 60 rows
+      - id: offsets_zoom3
+        size: 41245 * 4
+        type: offsets
+        doc: |
+          41245 offsets for 24700 greyscale tiles of size 1000x1000 (zoom level 3)
+          arranged in a grid of 250 columns and 165 rows
+      - id: here_be_dragons4
+        size: 316004 - 20*4 - 169*4 - 2280 - 30*4 - 840 - (15972 - 4016) - 41245 * 4
+        doc: whatever remains → have a look
   offsets:
     seq:
-      - id: todo_aufteilung # TODO: Unterstrukturen einfügen
-        size: 316004
+      - id: offset
+        type: u4
+        repeat: eos
 # city database → https://dsat.igada.de/2005/03/26/decoding-the-city-database.html
   cities:
     seq:
