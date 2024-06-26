@@ -1,3 +1,4 @@
+# -*- mode: yaml -*-
 meta:
   id: dsat
   title: D-Sat 1 file format for storing tiles and metadata
@@ -51,7 +52,6 @@ seq:
     doc: gap between last tile and second-to-last tile
     # offset of last tile (644824916) minus offset of second-to-last
     # (644804703) tile plus its size (936)
-    type: const_01 # FIXME: does not work as expected, see below
   - id: unknown4
     size: 8995
     doc: starts also with "CIS3" but header size is 0 → broken?
@@ -89,15 +89,16 @@ types:
       - id: here_be_dragons1
         size: 2280 # 772 to 3052
         doc: not clear, what this is
-      - id: here_be_dragons2
+      - id: const_16194771
         size: 30*4 # 3052 to 3172
+        type: offsets
         doc: |
           fixed value 16194771 (offset of first 500x500 tile)
           repeated 30 times (for whatever reason)
-      - id: here_be_dragons3
+      - id: const_4278772525
         size: 844 # 3172 to 4016
+        type: offsets
         doc: not clear, what this is (fixed value 4278772525)
-        type: const_4278772525
       - id: offsets_zoom2
         size: 15976 - 4016 # 4016 to 15976 (2990 offsets of 4 byte each)
         type: offsets
@@ -110,7 +111,7 @@ types:
         doc: |
           41245 offsets for 24700 greyscale tiles of size 1000x1000 (zoom level 3)
           arranged in a grid of 250 columns and 165 rows
-      - id: here_be_dragons4
+      - id: here_be_dragons2
         size: 135064 # 180956 to 316020
         doc: whatever remains → have a look
   offsets:
@@ -148,29 +149,3 @@ types:
       - id: tiles
         type: cis
         repeat: eos # FIXME: how to model?
-
-# workaround: types for constant repetition of some values
-# FIXME: does not work as expected
-#        i.e., ksv only highlights one 0x01 value, not all
-  const_00:
-    seq:
-      - id: value
-        contents: [0x00]
-  const_01:
-    seq:
-      - id: value
-        contents: [0x01]
-  const_ff:
-    seq:
-      - id: value
-        type: const_ff_val
-        repeat: eos
-  const_ff_val:
-    seq:
-      - id: value
-        size: 1 #contents: [0x01]
-  const_4278772525:
-    seq:
-      - id: value
-        type: u4
-        repeat: eos
