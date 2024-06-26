@@ -30,7 +30,8 @@ seq:
     doc: list of 13394 cities and their coordinates
   - id: unknown3_1
     size: 980862
-  - id: unknown3_2
+  - id: borders_and_highways
+    type: polygons
     size: 1691200
     doc: borders and highways
   - id: tiles_zoom2
@@ -124,8 +125,7 @@ types:
     seq:
       - id: cities
         type: city
-        repeat: expr
-        repeat-expr: 13394 # FIXME: how to model?
+        repeat: eos
   city:
     seq:
       - id: name
@@ -140,12 +140,49 @@ types:
         type: f8
       - id: latitude
         type: f8
-      - id: unknown3
-        # contents: [0x09, 0x00, 0x00, 0x00, 0x00, 0x00]
-        size: 8
+      - id: unknown
+        type: u1
+        valid:
+          any-of: [9, 11, 17, 26]
+      - id: empty
+        size: 7
+        contents: [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
 # image tiles → https://dsat.igada.de/2024/04/22/getting-an-overview-on-the-file-content.html
   tiles:
     seq:
       - id: tiles
         type: cis
         repeat: eos # FIXME: how to model?
+  polygons:
+    seq:
+      - id: point
+        type: point
+        repeat: eos
+  point:
+    seq:
+      - id: longitude
+        type: f4
+      - id: latitude
+        type: f4
+      - id: unknown1
+        size: 1
+      - id: unknown2
+        type: u1
+        valid:
+          any-of: [0, 1, 2, 3, 4, 5, 6]
+      - id: unknown3
+        contents: [0xcd, 0xcd]
+      - id: unknown4
+        size: 1
+      - id: point_type
+        type: u1
+        valid:
+          any-of: [0, 1, 2, 3 ]
+        doc: |
+          0 seems to encode highways
+          1 seems to encode state borders
+          2 seems to (mainly) encode the federal border
+      - id: unknown5
+        type: u2
+        valid:
+          any-of: [0, 32768]
