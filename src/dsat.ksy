@@ -75,43 +75,42 @@ types:
   offset_list:
     seq:
       - id: offsets_zoom0
-        size: 20*4
+        size: 20*4 # 16 to 96
         type: offsets
         doc: |
           20 offsets for 20 color tiles of size 250x250 (zoom level 0)
           arranged in a grid of 4 columns and 5 rows
       - id: offsets_zoom1
-        size: 169*4
+        size: 169*4 # 96 to 772
         type: offsets
         doc: |
           169 offsets for 169 color tiles of size 500x500 (zoom level 1)
           arranged in a grid of 13 columns and 13 rows
       - id: here_be_dragons1
-        size: 2280
+        size: 2280 # 772 to 3052
         doc: not clear, what this is
       - id: here_be_dragons2
-        size: 30*4
+        size: 30*4 # 3052 to 3172
         doc: |
           fixed value 16194771 (offset of first 500x500 tile)
           repeated 30 times (for whatever reason)
       - id: here_be_dragons3
-        size: 840
+        size: 844 # 3172 to 4016
         doc: not clear, what this is (fixed value 4278772525)
       - id: offsets_zoom2
-        # FIXME: seem to start 4 bytes too early
-        size: 15972 - 4016 # 2989 offsets of 4 byte each
+        size: 15976 - 4016 # 4016 to 15976 (2990 offsets of 4 byte each)
         type: offsets
         doc: |
           3020 offsets for 2240 color tiles of size 500x500 (zoom level 2)
           arranged in a grid of 50 columns and 60 rows
       - id: offsets_zoom3
-        size: 41245 * 4
+        size: 41245 * 4 # 15976 to 180956
         type: offsets
         doc: |
           41245 offsets for 24700 greyscale tiles of size 1000x1000 (zoom level 3)
           arranged in a grid of 250 columns and 165 rows
       - id: here_be_dragons4
-        size: 316004 - 20*4 - 169*4 - 2280 - 30*4 - 840 - (15972 - 4016) - 41245 * 4
+        size: 135064 # 180956 to 316020
         doc: whatever remains → have a look
   offsets:
     seq:
