@@ -97,6 +97,7 @@ types:
       - id: here_be_dragons3
         size: 844 # 3172 to 4016
         doc: not clear, what this is (fixed value 4278772525)
+        type: const_4278772525
       - id: offsets_zoom2
         size: 15976 - 4016 # 4016 to 15976 (2990 offsets of 4 byte each)
         type: offsets
@@ -168,3 +169,8 @@ types:
     seq:
       - id: value
         size: 1 #contents: [0x01]
+  const_4278772525:
+    seq:
+      - id: value
+        type: u4
+        repeat: eos
