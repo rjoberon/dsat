@@ -21,4 +21,4 @@ Struct](http://kaitai.io/) I found a solution for that: I can describe
 the file format [in a simple YAML file](/src/dsat.ksy), automatically
 generate code to parse files, and also visualize the structure:
 
-![Visualization of the D-Sat file structure](/img/dsat_kaitai.png)
+[![Visualization of the D-Sat file structure](/img/dsat_kaitai.png)](/img/dsat_kaitai.png))
