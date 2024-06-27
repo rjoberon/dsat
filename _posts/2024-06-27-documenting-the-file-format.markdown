@@ -1,6 +1,6 @@
 ---
 title: Documenting the file format
-description: Understanding how the tile index works and how tiles are arranged in the file.
+description: Using Kaitai Struct I can describe the file format and generate code and visualizations.
 image: /img/dsat_kaitai.png
 ---
 
@@ -14,8 +14,9 @@ indexed](https://dsat.igada.de/2024/05/11/visualising-entropy.html)
 and [which information the image header
 reveals](https://dsat.igada.de/2024/04/20/understanding-the-image-header.html),
 as well as [that the file also contains points describing borders and
-highways](https://dsat.igada.de/2024/05/06/finding-somehing-unexpected.html). It
-is time to document this knowledge and with [Kaitai
+highways](https://dsat.igada.de/2024/05/06/finding-somehing-unexpected.html).
+
+It is time to document this knowledge. With [Kaitai
 Struct](http://kaitai.io/) I found a solution for that: I can describe
 the file format [in a simple YAML file](/src/dsat.ksy), automatically
 generate code to parse files, and also visualize the structure:
