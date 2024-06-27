@@ -24,6 +24,6 @@ generate code to parse files, and also visualize the structure:
 [![Visualization of the D-Sat file structure](/img/dsat_kaitai.png)](/img/dsat_kaitai.png)
 
 The image format of the tiles is described [in a separate
-file](/src/cis.ksy) and so far only describes some header fields:
+file](/src/cis.ksy) and so far only details some header fields:
 
 ![Visualization of the image file structure](/img/cis.png)
