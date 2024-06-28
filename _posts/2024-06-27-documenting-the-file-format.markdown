@@ -26,4 +26,4 @@ generate code to parse files, and also visualize the structure:
 The image format of the tiles is described [in a separate
 file](/src/cis.ksy) and so far only details some header fields:
 
-![Visualization of the image file structure](/img/cis.png)
+![Visualization of the image file structure](/img/cis_kaitai.png)
