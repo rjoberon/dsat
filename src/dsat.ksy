@@ -31,7 +31,7 @@ seq:
   - id: unknown3_1
     size: 980862
   - id: borders_and_highways
-    type: polygons
+    type: points
     size: 1691200
     doc: borders and highways
   - id: tiles_zoom2
@@ -101,7 +101,7 @@ types:
         type: offsets
         doc: not clear, what this is (fixed value 4278772525)
       - id: offsets_zoom2
-        size: 15976 - 4016 # 4016 to 15976 (2990 offsets of 4 byte each)
+        size: 2990*4 # 4016 to 15976 (2990 offsets of 4 byte each)
         type: offsets
         doc: |
           3020 offsets for 2240 color tiles of size 500x500 (zoom level 2)
@@ -153,7 +153,7 @@ types:
       - id: tiles
         type: cis
         repeat: eos # FIXME: how to model?
-  polygons:
+  points:
     seq:
       - id: point
         type: point
