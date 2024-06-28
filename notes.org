@@ -1,6 +1,11 @@
 * Notes
 ** Next Steps
 
+- [ ] analyze distribution (number, distance, etc.) of "cod" markers
+  in COD files
+- [ ] generalize [[file:src/dsat.ksy][dsat.ksy]] to dsatsued.mp
+- [ ] analyze unknown parts of dsatnord.mp and compare them to
+  dsatsued.mp
 - [ ] test [[https://en.wikipedia.org/wiki/SK-42_reference_system][SK-42]] and derivatives (check older [[https://groups.google.com/g/de.org.ccc/c/xlaNafyxmrM/m/hXZj7J5ksc8J][usenet discussion on how
   to decode the geo coordinates]])
 
