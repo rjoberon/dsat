@@ -1,3 +1,4 @@
+# -*- mode: yaml -*-
 # Lightning Strike image format → https://dsat.igada.de/2024/04/20/understanding-the-image-header.html
 meta:
   id: cis

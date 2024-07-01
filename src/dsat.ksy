@@ -131,6 +131,7 @@ types:
       - id: name
         type: str
         size: 40
+        terminator: 0
         encoding: ISO-8859-1
       - id: position
         type: position
