@@ -14,7 +14,7 @@ indexed](https://dsat.igada.de/2024/05/11/visualising-entropy.html)
 and [which information the image header
 reveals](https://dsat.igada.de/2024/04/20/understanding-the-image-header.html),
 as well as [that the file also contains points describing borders and
-highways](https://dsat.igada.de/2024/05/06/finding-somehing-unexpected.html).
+highways](https://dsat.igada.de/2024/05/06/finding-something-unexpected.html).
 
 It is time to document this knowledge. With [Kaitai
 Struct](http://kaitai.io/) I found a solution for that: I can describe

@@ -44,5 +44,11 @@ types:
         size: header_size - 20
   ls_data:
     seq:
-      - id: unknown
+      - id: planes
+#        type: ls_plane
+#        repeat: eos
         size-eos: true
+#  ls_plane:
+#    seq:
+#      - id: plane
+#        terminator: 0x63_6f_64

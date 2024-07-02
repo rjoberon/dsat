@@ -16,7 +16,6 @@
 # 2024-04-20 (rja)
 # - initial version
 
-import os
 import argparse
 from cis import Cis
 

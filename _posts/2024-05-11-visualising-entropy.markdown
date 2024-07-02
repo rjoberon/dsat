@@ -4,7 +4,7 @@ description: Understanding how the tile index works and how tiles are arranged i
 image: /img/ve_tiles1000_165x250.png
 ---
 
-Our quest to [find the tile index of D-Sat 1](/2024/04/23/searching-for-the-index.html) continues. [I have described before, what I mean with "tile index"](/2024/05/06/finding-somehing-unexpected.html) and I have also given a clue that I found something in the first part of the big blob of data `dsatnord.mp` which I named `un1.dat`.
+Our quest to [find the tile index of D-Sat 1](/2024/04/23/searching-for-the-index.html) continues. [I have described before, what I mean with "tile index"](/2024/05/06/finding-something-unexpected.html) and I have also given a clue that I found something in the first part of the big blob of data `dsatnord.mp` which I named `un1.dat`.
 
 In this post we will
 1. extract the byte offsets of the tiles from `dsatnord.mp`,
@@ -29,7 +29,7 @@ values, integer values, etc.)
 
 ## Extracting the byte offsets of the tiles
 
-[As described before](/2024/05/06/finding-somehing-unexpected.html),
+[As described before](/2024/05/06/finding-something-unexpected.html),
 we are looking for information about the tiles that contain the
 satellite images. Since the tiles are stored sequentially in
 `dsatnord.mp`, the most simple way to identify them is their [byte
@@ -88,7 +88,7 @@ with open("../dsatnord.mp", "rb") as f:
     found offset 616207380 at byte position 176132
 
 
-That looks good! Some more analysis revealed that actually *all* tile offsets are contained in the first part `un1.dat`. Furthermore, there are (almost) no gaps between offsets, that is, (almost) each successive 4 byte integer represents an offset of a tile. This also means that this index does not contain any coordinates! This was quite unexpected and the reason why [I continued searching for the index](/2024/05/06/finding-somehing-unexpected.html), although I already knew that `un1.dat` contains the offsets.
+That looks good! Some more analysis revealed that actually *all* tile offsets are contained in the first part `un1.dat`. Furthermore, there are (almost) no gaps between offsets, that is, (almost) each successive 4 byte integer represents an offset of a tile. This also means that this index does not contain any coordinates! This was quite unexpected and the reason why [I continued searching for the index](/2024/05/06/finding-something-unexpected.html), although I already knew that `un1.dat` contains the offsets.
 Last but not least, the first offset starts at byte 16, so I assume the first 16 bytes of `dsatnord.mp` constitute the file header, which looks as follows:
 
 ```
