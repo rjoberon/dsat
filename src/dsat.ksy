@@ -28,8 +28,18 @@ seq:
     type: cities
     size: 13394 * 64
     doc: list of 13394 cities and their coordinates
-  - id: unknown3_1
-    size: 980862
+  - id: unknown3_11
+    size: 24*16
+    doc: |
+      strings: "D:\Dsat\Dsat23\CityDlg.cpp" "c:\temp\cityname.bin"
+      "Suche wiederholt" "Suche wiederholt"
+  - id: city_signs
+    type: city_signs
+    size: 4878 * 201
+    doc: |
+      201 Windows Bitmap (BMP) files of size 75x50, each showing a
+      German town sign (black text on yellow background) for
+      (apparently) district towns (Kreisstädte)
   - id: borders_and_highways
     type: points
     size: 1691200
@@ -135,6 +145,16 @@ types:
         encoding: ISO-8859-1
       - id: position
         type: position
+  city_signs:
+    seq:
+      - id: city_signs
+        type: city_sign
+        repeat: eos
+  city_sign:
+    seq:
+      - id: data
+        size: 4878
+        doc: Windows Bitmap File (BMP) of 75x50 pixels (indexed color palette)
   position:
     seq:
       - id: longitude
