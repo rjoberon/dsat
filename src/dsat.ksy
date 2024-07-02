@@ -38,8 +38,8 @@ seq:
     size: 4878 * 201
     doc: |
       201 Windows Bitmap (BMP) files of size 75x50, each showing a
-      German town sign (black text on yellow background) for
-      (apparently) district towns (Kreisstädte)
+      German town sign (black text on yellow background) for some
+      larger towns
   - id: borders_and_highways
     type: points
     size: 1691200
