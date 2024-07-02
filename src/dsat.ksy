@@ -22,8 +22,11 @@ seq:
     type: tiles
     size: 9056940
     doc: 169 color tiles of size 500x500 (zoom level 1)
-  - id: unknown2
-    size: 2538456
+  - id: borders_and_highways1
+    type: points
+    size: 567760
+  - id: unknown2_2
+    size: 1970696
   - id: cities
     type: cities
     size: 13394 * 64
@@ -40,8 +43,8 @@ seq:
       201 Windows Bitmap (BMP) files of size 75x50, each showing a
       German town sign (black text on yellow background) for some
       larger towns
-  - id: borders_and_highways
-    type: points
+  - id: borders_and_highways2
+    type: points_and_more
     size: 1691200
     doc: borders and highways
   - id: tiles_zoom2
@@ -179,21 +182,33 @@ types:
       - id: point
         type: point
         repeat: eos
+  points_and_more:
+    seq:
+      - id: point
+        type: point_and_info
+        repeat: eos
   point:
+    seq:
+      - id: longitude
+        type: u4
+      - id: latitude
+        type: u4
+  point_and_info:
     seq:
       - id: longitude
         type: f4
       - id: latitude
         type: f4
-      - id: unknown1
+      - id: b9
         size: 1
-      - id: unknown2
+      - id: b10
         type: u1
         valid:
           any-of: [0, 1, 2, 3, 4, 5, 6]
-      - id: unknown3
+      - id: b11_12
+        size: 2
         contents: [0xcd, 0xcd]
-      - id: unknown4
+      - id: b13
         size: 1
       - id: point_type
         type: u1
@@ -203,7 +218,7 @@ types:
           0 seems to encode highways
           1 seems to encode state borders
           2 seems to (mainly) encode the federal border
-      - id: unknown5
+      - id: b15_16
         type: u2
         valid:
           any-of: [0, 32768]
