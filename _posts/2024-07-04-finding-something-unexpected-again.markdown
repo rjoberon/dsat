@@ -100,11 +100,11 @@ past decades the number should have been even higher in the 1990s. So
 another mystery to solve.
 
 What I found also remarkable is the fact that 4878*201 = 980478 bytes
-(more than a [double density DOS formatted floppy disk could
+(more than a [double density DOS-formatted floppy disk could
 fit](https://en.wikipedia.org/wiki/List_of_floppy_disk_formats)) were
 used to represent very simple town signs in an uncompressed image
 format. The code to create the signs at runtime should have required
-much less space but maybe there was not time to write the code.
+much less space but maybe there was no time to write the code.
 
 (The [Kaitai Struct
 specification](https://github.com/rjoberon/dsat/blob/main/src/dsat.ksy)
