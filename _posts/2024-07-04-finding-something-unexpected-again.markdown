@@ -89,7 +89,7 @@ Another one! You can now probably guess what happened: it's not just
 two but more ... but how many? 201! Here they are (conveniently
 arranged in a 17 by 12 grid):
 
-![All 201 city signs](/img/city_signs.png)
+[![All 201 city signs](/img/city_signs.png)](/img/city_signs.png)
 
 These are all town signs of larger German towns. I first thought these
 might be the district towns ("Kreisstädte") but since [Germany
