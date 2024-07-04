@@ -8,6 +8,7 @@ meta:
   endian: le
   imports:
     - cis
+    - bmp
 seq:
   - id: header
     type: header
@@ -25,8 +26,13 @@ seq:
   - id: borders_and_highways1
     type: points
     size: 567760
-  - id: unknown2_2
-    size: 1970696
+  - id: tiles_bmp
+    size: 975894 + 994802
+    type: tiles_bmp
+    doc: |
+      a 570x570x24 bitmap showing an aerial photo of an industrial
+      area and another 574x577x24 bitmap showing a zoomed-in part of
+      the first image
   - id: cities
     type: cities
     size: 13394 * 64
@@ -151,13 +157,10 @@ types:
   city_signs:
     seq:
       - id: city_signs
-        type: city_sign
-        repeat: eos
-  city_sign:
-    seq:
-      - id: data
+        type: bmp
         size: 4878
-        doc: Windows Bitmap File (BMP) of 75x50 pixels (indexed color palette)
+        doc: Windows bitmap file (BMP) of 75x50x8 pixels (indexed color palette)
+        repeat: eos
   position:
     seq:
       - id: longitude
@@ -177,6 +180,14 @@ types:
       - id: tiles
         type: cis
         repeat: eos # FIXME: how to model?
+  tiles_bmp:
+    seq:
+      - id: tile1
+        type: bmp
+        size: 975894
+      - id: tile2
+        type: bmp
+        size: 994802
   points:
     seq:
       - id: point
