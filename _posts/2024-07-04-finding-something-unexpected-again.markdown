@@ -105,3 +105,7 @@ fit](https://en.wikipedia.org/wiki/List_of_floppy_disk_formats)) were
 used to represent very simple town signs in an uncompressed image
 format. The code to create the signs at runtime should have required
 much less space but maybe there was not time to write the code.
+
+(The [Kaitai Struct
+specification](https://github.com/rjoberon/dsat/blob/main/src/dsat.ksy)
+now also includes the town signs.)
