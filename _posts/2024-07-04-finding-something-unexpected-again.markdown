@@ -1,7 +1,7 @@
 ---
 title: Finding something unexpected again
 image: /img/aachen.png
-description:
+description: To much surprise, content in a well-known file format is discovered while inspecting uncharted territories.
 ---
 
 This week I was poking around in the few remaining unknown territories
