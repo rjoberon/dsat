@@ -12,7 +12,7 @@ meta:
 seq:
   - id: header
     type: ls_header
-#    size: header.header_size → gives error in Python code
+    # size: header.header_size # → gives error in Python code
   - id: data
     type: ls_data
     size: header.data_size

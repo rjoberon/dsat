@@ -7,8 +7,8 @@ meta:
   file-extension: mp
   endian: le
   imports:
-    - cis
-    - bmp
+    - cis # https://github.com/rjoberon/dsat/blob/main/src/cis.ksy
+    - bmp # https://github.com/kaitai-io/kaitai_struct_formats/blob/master/image/bmp.ksy
 seq:
   - id: header
     type: header
@@ -18,6 +18,10 @@ seq:
   - id: tiles_zoom0
     type: tiles
     size: 754077
+    # does not work:
+    # type: cis
+    # size: tiles_zoom0.header.data_size + tiles_zoom0.header.header_size
+    # repeat: eos
     doc: 20 color tiles of size 250x250 (zoom level 0)
   - id: tiles_zoom1
     type: tiles
@@ -31,8 +35,10 @@ seq:
     type: tiles_bmp
     doc: |
       a 570x570x24 bitmap showing an aerial photo of an industrial
-      area and another 574x577x24 bitmap showing a zoomed-in part of
-      the first image
+      area (TOPWARE/CD-Service AG, Markircher Str. 25, 68229 Mannheim
+      – which was responsible for distribution and support of D-Sat 1)
+      and another 574x577x24 bitmap showing a zoomed-in part of the
+      first image
   - id: cities
     type: cities
     size: 13394 * 64
@@ -179,12 +185,14 @@ types:
     seq:
       - id: tiles
         type: cis
-        repeat: eos # FIXME: how to model?
+        repeat: eos
   tiles_bmp:
     seq:
       - id: tile1
         type: bmp
         size: 975894
+        # does not work:
+        # size: tile1.file_hdr.len_file
       - id: tile2
         type: bmp
         size: 994802
