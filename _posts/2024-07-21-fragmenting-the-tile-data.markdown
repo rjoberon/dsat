@@ -68,7 +68,7 @@ all greyscale 1000x1000 tiles for each sub-band:
 
 ![sub-band sizes for all 1000x1000 greyscale tiles](/img/subband_sizes_tiles1000.png)
 
-The vertical axis is logarithmically scaled and the numbers at each
+The vertical axis is scaled logarithmically and the numbers at each
 lower end of the violin plot indicate the mean for each sub-band.
 
 We can see that the size required for each sub-band increases from (on
