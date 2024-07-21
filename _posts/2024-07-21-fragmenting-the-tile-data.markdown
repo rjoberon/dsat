@@ -81,6 +81,19 @@ the following sub-bands improves the image quality step-by-step by
 adding more details which supports progressing loading and display of
 images.
 
+For comparison, here's the plot for the 2240 colour tiles of size
+500x500:
+
+![sub-band sizes for the 2240 colour tiles of size 500x500](/img/subband_sizes_tiles500.png)
+
+Here the most frequent number of part (36) does not fit to the
+abovementioned formula but we also have colour images, thus three
+components (probably [YCbCr](https://en.wikipedia.org/wiki/YCbCr)). I
+suppose that the Y component (luma) is encoded in more detail (=higher
+depth) than the colour components. For example, having depth 5 for
+luma and depth 3 for Cb and Cr each, would result in 36 sub-bands (3 *
+5 + 1 + (2 * (3 * 3 + 1)).
+
 A good starting point for further reading is Chapter 16 "Wavelet-Based
 Image Compression" of the book [Introduction to Data
 Compression](https://doi.org/10.1016/C2010-0-69630-1) by Khalid
