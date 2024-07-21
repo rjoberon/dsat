@@ -90,10 +90,11 @@ Most of these tiles have 36 parts that represent encoded sub-bands
 which does not fit to the abovementioned formula. However, we also
 have colour images, thus three components (probably
 [YCbCr](https://en.wikipedia.org/wiki/YCbCr)). I suppose that the Y
-component (luma) is encoded in more detail (=higher depth) than the
-colour components. For example, having depth 5 for luma and depth 3
-for Cb and Cr each, would result in 36 sub-bands (3 * 5 + 1 + (2 *
-(3 * 3 + 1)).
+component (luma) is encoded in more detail (= higher depth) than the
+colour components. For example, instead of having the same depth of 4
+for all three components, a depth of 5 for luma and a depth of 3 for
+Cb and Cr each would result in the observed 36 sub-bands (3 * 5 + 1 +
+(2 * (3 * 3 + 1)).
 
 A good starting point for further reading is Chapter 16 "Wavelet-Based
 Image Compression" of the book [Introduction to Data
