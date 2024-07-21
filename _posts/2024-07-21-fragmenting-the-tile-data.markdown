@@ -17,7 +17,7 @@ these blocks.
 Let us start to analyse how many such parts we find in images for the
 different tile types:
 
-## 20 colour tiles of size 250x250
+### 20 colour tiles of size 250x250
 
 | number of parts | frequency |
 |-----------------+-----------|
@@ -25,14 +25,14 @@ different tile types:
 |              42 |         2 |
 |              48 |         1 |
 
-## 169 colour tiles of size 500x500
+### 169 colour tiles of size 500x500
 
 | number of parts | frequency |
 |-----------------+-----------|
 |              36 |       162 |
 |              39 |         7 |
 
-## 2240 colour tiles of size 500x500
+### 2240 colour tiles of size 500x500
 
 | number of parts | frequency |
 |-----------------+-----------|
@@ -40,7 +40,7 @@ different tile types:
 |              37 |         1 |
 |              39 |         1 |
 
-## 24700 greyscale tiles of size 1000x1000
+### 24700 greyscale tiles of size 1000x1000
 
 | number of parts | frequency |
 |-----------------+-----------|
