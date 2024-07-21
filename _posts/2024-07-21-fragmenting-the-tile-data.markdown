@@ -77,8 +77,9 @@ sub-band 12 (excluding sub-band 13 which only 33 images have). This
 nicely fits the typical order in which sub-bands in wavelet compressed
 images are stored: The first sub-band provides a very much scaled-down
 version of the original image. Successively adding information from
-the following sub-bands improves the image quality step-by-step, thus
-supporting progressing loading and display of images.
+the following sub-bands improves the image quality step-by-step by
+adding more details which supports progressing loading and display of
+images.
 
 A good starting point for further reading is Chapter 16 "Wavelet-Based
 Image Compression" of the book [Introduction to Data
