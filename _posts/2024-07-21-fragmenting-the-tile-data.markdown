@@ -87,7 +87,7 @@ For comparison, here's the plot for the 2240 colour tiles of size
 ![sub-band sizes for the 2240 colour tiles of size 500x500](/img/subband_sizes_tiles500.png)
 
 Most of these tiles have 36 parts that represent encoded sub-bands
-which does not fit to the abovementioned formula. However, we also
+– which does not fit to the abovementioned formula. However, we also
 have colour images, thus three components (probably
 [YCbCr](https://en.wikipedia.org/wiki/YCbCr)). I suppose that the Y
 component (luma) is encoded in more detail (= higher depth) than the
