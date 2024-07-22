@@ -96,7 +96,8 @@ for all three components, a depth of 5 for luma and a depth of 3 for
 Cb and Cr each would result in the observed 36 sub-bands (3 * 5 + 1 +
 (2 * (3 * 3 + 1)).
 
-A good starting point for further reading is Chapter 16 "Wavelet-Based
-Image Compression" of the book [Introduction to Data
-Compression](https://doi.org/10.1016/C2010-0-69630-1) by Khalid
-Sayood.
+[This Jupyter Notebook](/src/Cod.ipynb) contains the code to create
+the plots from this post. A good starting point for further reading is
+Chapter 16 "Wavelet-Based Image Compression" of the book [Introduction
+to Data Compression](https://doi.org/10.1016/C2010-0-69630-1) by
+Khalid Sayood.
