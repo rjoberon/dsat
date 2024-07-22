@@ -11,11 +11,11 @@ several times and thus is conspicuous. According to [a wiki page
 describing a derived video
 codec](https://wiki.multimedia.cx/index.php/Lightning_Strike_Video_Codec)
 it marks the end of a "plane", a basic building block of
-wavelet-compressed images. In this post we explore the distribution of
-these blocks.
+wavelet-compressed images. In this post we explore the size
+distribution of these blocks.
 
-Let us start to analyse how many such parts we find in images for the
-different tile types:
+Let us start by analysing how many such parts we find in images for
+the different tile types:
 
 ### 20 colour tiles of size 250x250
 
