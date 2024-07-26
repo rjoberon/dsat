@@ -20,18 +20,25 @@ types:
   ls_header:
     seq:
       - id: magic
-        contents: "CIS3"
-      - id: unknown1
-        contents: "."
-      - id: unknown2
+        contents: "CIS"
+      - id: version
         size: 3
+        type: str
+        encoding: ASCII
+        doc: |
+          so far seen: "2.5" and "3.0" but the remainder of this spec
+          only works for 3.0
+      - id: unknown2
+        type: u2     # just a guess
       - id: header_size
         type: u2
         doc: 56 for greyscale, 60 for color
       - id: data_size
         type: u4
       - id: unknown3
-        contents: [0]
+        size: 1
+        doc: |
+          so far seen: 0x00, 0x52
       - id: unknown4
         size: 1
       - id: width
