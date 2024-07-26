@@ -2,8 +2,10 @@
 layout: default
 ---
 
-<h1>{{ tag }} Posts</h1>
+<h1 class="page-heading">{{ tag }} posts</h1>
 
-{% for post in tagged_posts %}
-  {{ post.title }}
-{% endfor %}
+<ul class="post-list">
+  {% for post in tagged_posts %}
+    {% include post.html %}
+  {% endfor %}
+</ul>
