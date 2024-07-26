@@ -1,7 +1,7 @@
 ---
 title: Understanding the image header
 description: The image header contains the size of the file and the header.
-tags: ["cis/cod", "tiles"]
+tags: ["cis-cod", "tiles"]
 ---
 
 One important question remains: Are the tiles in `dsatnord.mp` stored

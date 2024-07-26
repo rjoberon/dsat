@@ -2,7 +2,7 @@
 title: Viewing tiles with Firefox
 image: /img/screenshot_firefox_plugin.png
 description: Using a plugin for Netscape Navigator we can use an old Firefox verstion to view tiles in the Windows emulator Wine.
-tags: ["cis/cod", "tiles"]
+tags: ["cis-cod", "tiles"]
 ---
 
 Knowing the offsets of (potential) tiles, we can pick one (56057877)
