@@ -6,7 +6,7 @@ tags: ["dsat"]
 ---
 
 Now let us inspect the [unknown segments between
-tiles](/2024-04-22-getting-an-overview-on-the-file-content.markdown)
+tiles](/2024/04/22/getting-an-overview-on-the-file-content.html)
 where I suspect the index for the tiles. First, we extract all unknown
 parts:
 
