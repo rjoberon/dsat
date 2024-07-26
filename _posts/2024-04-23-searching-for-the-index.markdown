@@ -2,6 +2,7 @@
 title: Searching for the index
 image: /img/un1.png
 description: We visualise the parts which we have not decoded, yet.
+tags: ["dsat"]
 ---
 
 Now let us inspect the [unknown segments between

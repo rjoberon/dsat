@@ -2,6 +2,7 @@
 title: Documenting the file format
 description: Using Kaitai Struct I can describe the file format and generate code and visualizations.
 image: /img/dsat_kaitai.png
+tags: ["dsat", "cis/cod"]
 ---
 
 Since [the first post on decoding the city

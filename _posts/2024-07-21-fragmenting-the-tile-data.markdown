@@ -2,6 +2,7 @@
 title: Fragmenting the tile data
 image: /img/subband_sizes_tiles1000.png
 description: Looking at some statistics about the structure of the tile data we learn something about the underlying wavelet compression.
+tags: ["cis/cod", "tiles"]
 ---
 
 When looking at the data segment of [CIS/COD

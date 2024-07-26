@@ -2,6 +2,7 @@
 title: Finding something unexpected
 image: /img/un3_1_int.png
 description: We find coordinates of highways and borders instead of tile coordinates.
+tags: ["dsat", "coordinates"]
 ---
 
 After having [visualised the "uncharted" parts of

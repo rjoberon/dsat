@@ -2,6 +2,7 @@
 title: Finding the tiles
 image: /img/offsets_zoom.png
 description: We find a way to identify and find the image tiles.
+tags: ["dsat", "cis/cod", "tiles"]
 ---
 
 To find the image tiles in `dsatnord.mp` and possibly decode them, we
