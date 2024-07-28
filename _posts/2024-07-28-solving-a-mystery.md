@@ -49,9 +49,9 @@ indicator for Windows bitmap
 files](/2024/07/04/finding-something-unexpected-again.html). (This is
 the second reason for the title of this post.) I thought: [Nachtigall
 ick hör dir
-trapsen!](https://en.wikipedia.org/wiki/Des_Knaben_Wunderhorn)
+trapsen!](https://de.wikipedia.org/wiki/Des_Knaben_Wunderhorn)
 
-Now the power of Katai comes into play again: I imported the
+Now the power of Katai Struct comes into play again: I imported the
 [specification for BMP
 files](https://github.com/kaitai-io/kaitai_struct_formats/blob/master/image/bmp.ksy)
 and added a new element of `type: bmp` after the
@@ -59,7 +59,7 @@ and added a new element of `type: bmp` after the
 the chance that I had found another BMP file was high. Thus, I
 extracted it with `dd` (using the [size information from the BMP
 header as
-before](/2024/07/04/finding-something-unexpected-again.html):
+before](/2024/07/04/finding-something-unexpected-again.html)):
 
 ```sh
 dd if=dsatnord.mp of=img.bmp bs=1 skip=10694797 count=975894
