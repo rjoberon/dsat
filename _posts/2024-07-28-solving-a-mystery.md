@@ -92,13 +92,13 @@ quickly saw what I had seen before but forgotten:
 
 ![TOPWARE logo in D-Sat 1](/img/topware0.jpg)
 
-Already visible at the lowest zoom level (fully zoomed out): The logo
-of the distributor ("TOPWARE") placed at Mannheim. A double click on
-the logo immediately shows a 500x500 section of the first aerial image
-I have found in a separate window titled "Markerbild". Another double
-click on that image shows a 500x500 section of the second aerial
-image. Looking at the content of the CD-ROM I discovered why the
-images looked familiar to me:
+Already at the lowest zoom level (fully zoomed out) the logo of the
+distributor ("TOPWARE") is placed at Mannheim visible. A double click
+on the logo immediately shows a 500x500 section of the first aerial
+image I have found in a separate window titled "Markerbild". Another
+double click on that image shows a 500x500 section of the second
+aerial image. Looking at the contents of the CD-ROM I discovered why
+the images looked familiar to me:
 
 ```sh
 > ls -l *.bmp
@@ -108,6 +108,8 @@ images looked familiar to me:
 mannh1.bmp: PC bitmap, Windows 3.x format, 500 x 500 x 8, image size 250000, resolution 23621 x 23621 px/m, 256 important colors, cbSize 251078, bits offset 1078
 mannh2.bmp: PC bitmap, Windows 3.x format, 500 x 500 x 8, image size 250000, resolution 23621 x 23621 px/m, 256 important colors, cbSize 251078, bits offset 1078
 ```
+I had seen them before when browsing the CD-ROM contents.
+
 I have not checked (yet) whether `dsatsued.mp` contains those two
 files, although I am pretty certain that they are contained, since
 a `grep` on `dsatsued.mp` for the last six bytes of
