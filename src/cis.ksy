@@ -29,7 +29,7 @@ types:
           so far seen: "2.5" and "3.0" but the remainder of this spec
           only works for 3.0
       - id: unknown2
-        type: u2     # just a guess
+        size: 2
       - id: header_size
         type: u2
         doc: 56 for greyscale, 60 for color
