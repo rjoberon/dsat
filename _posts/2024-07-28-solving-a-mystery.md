@@ -168,6 +168,6 @@ which will cover the following topics:
   find about it (the impatient can have a look at
   [Cod.ipynb](/src/Cod.ipynb))
 - what I discovered when I started the *Lightning Strike Image
-  Compressor V2.5*.
+  Compressor V2.5* (the impatient can [download it here and then test it](http://justsolve.archiveteam.org/wiki/Lightning_Strike))
 
 Happy reverse-engineering to everybody!
