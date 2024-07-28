@@ -2,7 +2,7 @@
 title: Solving a mystery (and finding something unexpected again)
 image: /img/aerial1.jpg
 description: We discover two different types of data in the last uncharted part of dsatnord.mp.
-tags: ["dsat"]
+tags: ["dsat", coordinates]
 ---
 
 We have now mapped almost all parts of `dsatnord.mp` except for the
