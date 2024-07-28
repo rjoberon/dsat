@@ -11,16 +11,16 @@ one I have dubbed
 at the greyscale byte representation again, we can see roughly five
 regions with distinct patterns:
 
-![greyscale byte reprsentation of the unknown2 part](/img/un2.png)
+![greyscale byte representation of the unknown2 part](/img/un2.png)
 
 With Gimp I identified the numbers of the rows of the image that
 roughly divide the parts: 553, 1050, 1508, and 1574. I then started to
-[analyze the different parts using
-autocorrelation](/src/Unknown2.ipynb) to find the byte size of
+[analyse the different parts using
+auto-correlation](/src/Unknown2.ipynb) to find the byte size of
 (potential) records. For the first part from row 0 to row 553 I found
 a high correlation for a record size of 8 bytes:
 
-![autocorrelation for the first part of the unknown2 part](/img/un2_1_autocorrelation.png)
+![auto-correlation for the first part of the unknown2 part](/img/un2_1_autocorrelation.png)
 
 With the experience I have gained analysing the previous parts, I
 extracted two 32 bit values from each record and quickly found that
@@ -126,14 +126,14 @@ on this CD-ROM. So it is likely that the two bitmaps with the same
 content (but a slightly different size) from `dsatnord.mp` are not
 used at all.
 
-Having thought a bit more about this discovery I looked again at lower
-four fifths of the greyscale representation of the `unknown2` part
-(first image in this post) and realized why it always looked so
+Having thought a bit more about this discovery I looked again at the
+lower four fifths of the greyscale representation of the `unknown2`
+part (first image in this post) and realised why it always looked so
 suspicious to me: it basically shows a distorted greyscale version of
 the two images. With the right number of columns – three times the
-image width, since the three RGB values result in three greyscale
-pixels – and a the correct start byte the aerial image should be
-visible. So I did this:
+image width, since the three RGB values of one colour pixel result in
+three greyscale pixels – and a correct start byte the aerial image
+should be visible. So I did this:
 
 ```sh
 dd if=dsatnord.mp of=aerial1.dat bs=1 skip=10694851 count=975840
@@ -149,9 +149,9 @@ Exactly as I expected it. How satisfying.
 
 And then I also realised: that's it! There's nothing more to discover
 in `dsatnord.mp`. Just some null bytes and some boring strings and
-maybe a few bytes at the end (which are likely quite boring). So my
-"endeavour to reverse-engineer the file format of D-Sat 1" was kind of
-successful. But does it also finish here? Well, no! There are still
+maybe a few bytes at the end (which are likely also quite boring). So
+my "endeavour to reverse-engineer the file format of D-Sat 1" was kind
+of successful. But does it also end here? Well, no! There are still
 two quests to solve: the mystery of the coordinates (or better: their
 projections) and the decoding of the [image format for the
 tiles](/2024/04/03/learning-about-the-image-format.html).
@@ -162,10 +162,11 @@ know and what we do not know so far about the content and structure of
 `dsatnord.mp`. Furthermore, I have already planned three more posts
 which will cover the following topics:
 - the different coordinate systems I have found and my approach to
-  make sense of them
+  make sense of them (the impatient can have a look at
+  [Coordinates.ipynb](/src/Coordinates.ipynb))
 - the raster image format used for the tiles and information I could
   find about it (the impatient can have a look at
-  [Cod.ipynb](/src/Cod.ipynb)).
+  [Cod.ipynb](/src/Cod.ipynb))
 - what I discovered when I started the *Lightning Strike Image
   Compressor V2.5*.
 
