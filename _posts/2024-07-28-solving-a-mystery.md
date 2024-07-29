@@ -93,12 +93,12 @@ quickly saw what I had seen before but forgotten:
 ![TOPWARE logo in D-Sat 1](/img/topware0.jpg)
 
 Already at the lowest zoom level (fully zoomed out) the logo of the
-distributor ("TOPWARE") is placed at Mannheim visible. A double click
-on the logo immediately shows a 500x500 section of the first aerial
-image I have found in a separate window titled "Markerbild". Another
-double click on that image shows a 500x500 section of the second
-aerial image. Looking at the contents of the CD-ROM I discovered why
-the images looked familiar to me:
+distributor ("TOPWARE") placed at Mannheim is visible. A double click
+on the logo shows a 500x500 section of the first aerial image I have
+found in a separate window titled "Markerbild". Another double click
+on that image shows a 500x500 section of the second aerial
+image. Looking at the contents of the CD-ROM I discovered why the
+images looked familiar to me:
 
 ```sh
 > ls -l *.bmp
@@ -108,17 +108,16 @@ the images looked familiar to me:
 mannh1.bmp: PC bitmap, Windows 3.x format, 500 x 500 x 8, image size 250000, resolution 23621 x 23621 px/m, 256 important colors, cbSize 251078, bits offset 1078
 mannh2.bmp: PC bitmap, Windows 3.x format, 500 x 500 x 8, image size 250000, resolution 23621 x 23621 px/m, 256 important colors, cbSize 251078, bits offset 1078
 ```
-I had seen them before when browsing the CD-ROM contents.
+I had a look at these two files before when browsing the CD-ROM
+contents. They show the same aerial images as the embedded bitmaps.
 
-I have not checked (yet) whether `dsatsued.mp` contains those two
-files, although I am pretty certain that they are contained, since
-a `grep` on `dsatsued.mp` for the last six bytes of
+I have not conclusively checked (yet) whether `dsatsued.mp` also
+contains the two bitmaps, although I am pretty certain that they are
+embedded, since a `grep` on `dsatsued.mp` for the last six bytes of
 the first image (`grep -obUaP "\x44\x4a\x40\x42\x00\x00"
-../dsatsued.mp`)
-yielded a result.
-However, given their exact 500x500 size it seems likely the two
-separate bitmap files are
-shown.
+../dsatsued.mp`) yielded a result.  However, given their exact 500x500
+size it seems likely that the two files `mannh1.bmp` and `mannh2.bmp`
+are shown instead of the embedded bitmaps.
 
 It turned out that the first CD-ROM (for the north of Germany) also
 contains those two files and clicking on the TOPWARE logo also works
