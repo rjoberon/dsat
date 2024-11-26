@@ -22,7 +22,7 @@ title: D-Sat
 # email:
 tagline: Decoding a 1990s file format.
 description: >- # this means to ignore newlines until "baseurl:"
-  An endeavour to reverse-engineer the file format of **D-Sat 1**.
+  An endeavour to reverse-engineer the file format of D-Sat 1.
 url: https://dsat.igada.de
 baseurl: "" # the subpath of your site, e.g. /blog
 # url: "https://dsat.igada.de" # the base hostname & protocol for your site, e.g. http://example.com
