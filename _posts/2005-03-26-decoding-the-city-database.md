@@ -5,7 +5,7 @@ description: A database of German cities is found together with their coordinate
 tags: ["dsat", "coordinates"]
 ---
 
-*Note: This post is a copy of the original web page I set up in 2005.*
+*This post is a copy of the original web page I set up in 2005.*
 
 # D-Sat 1
 
