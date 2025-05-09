@@ -32,19 +32,27 @@ instead of `dsatnord.mp`.
 
 More concisely described in [dsat.ksy](src/dsat.ksy) using [Kaitai Struct](https://kaitai.io/).
 
-| start offset | length [bytes] | end offset | name      | comment                                                |
-| -----------: | -------------: | ---------: | :-------- | :----------------------------------------------------- |
-|            0 |             16 |         16 | header    |                                                        |
-|           16 |         316004 |     316020 | offsets   | offsets of the tiles                                   |
-|       316020 |         754077 |    1070097 | tiles0    | 20 color tiles of size 250x250 (zoom level 0)          |
-|      1070097 |        9056940 |   10127037 | tiles1    | 169 color tiles of size 500x500 (zoom level 1)         |
-|     10127037 |         567760 |   10694797 | paths     | borders and highways                                   |
-|     10694797 |        1970696 |   12665493 | topware   | two BMP images (aerials of the topware headquarter)    |
-|     12665493 |         857216 |   13522709 | places    | list of 13394 places and their coordinates             |
-|     13522709 |            384 |   13523093 | unknown   |                                                        |
-|     13523093 |         980478 |   14503571 | citysigns | signs (75x50 BMP images) for 201 cities                |
-|     14503571 |        1691200 |   16194771 | paths     | borders and highways                                   |
-|     16194771 |       70627806 |   86822577 | tiles2    | 2240 color tiles of size 500x500 (zoom level 2)        |
-|     86822577 |      557983062 |  644805639 | tiles3    | 24700 greyscale tiles of size 1000x1000 (zoom level 3) |
-|    644805639 |          19277 |  644824916 | unknown   |                                                        |
-|    644824916 |           8995 |  644833911 | unknown   |                                                        |
+| start offset | length [bytes] | end offset | record size | numer of records | name               | comment                                                |
+| -----------: | -------------: | ---------: | ----------: | ---------------: | :--------          | :----------------------------------------------------- |
+|            0 |             16 |         16 |          16 |                1 | [header][l:hea]    |                                                        |
+|           16 |         316004 |     316020 |           4 |            79001 | [offsets][l:off]   | offsets of the tiles                                   |
+|       316020 |         754077 |    1070097 |             |               20 | [tiles0][l:til]    | color tiles of size 250x250 (zoom level 0)             |
+|      1070097 |        9056940 |   10127037 |             |              169 | [tiles1][l:til]    | color tiles of size 500x500 (zoom level 1)             |
+|     10127037 |         567760 |   10694797 |           8 |            70970 | [paths][l:top]     | borders and highways                                   |
+|     10694797 |        1970696 |   12665493 |             |                2 | [topware][l:top]   | two BMP images (aerials of the topware headquarter)    |
+|     12665493 |         857216 |   13522709 |          64 |            13394 | [places][l:pla]    | places and their coordinates                           |
+|     13522709 |            384 |   13523093 |             |                  | unknown            |                                                        |
+|     13523093 |         980478 |   14503571 |        4878 |              201 | [citysigns][l:sig] | signs (75x50 BMP images) for 201 cities                |
+|     14503571 |        1691200 |   16194771 |          16 |           105700 | [paths][l:pat]     | borders and highways                                   |
+|     16194771 |       70627806 |   86822577 |             |             2240 | [tiles2][l:til]    | color tiles of size 500x500 (zoom level 2)             |
+|     86822577 |      557983062 |  644805639 |             |            24700 | [tiles3][l:til]    | greyscale tiles of size 1000x1000 (zoom level 3)       |
+|    644805639 |          19277 |  644824916 |             |                  | unknown            |                                                        |
+|    644824916 |           8995 |  644833911 |             |                  | unknown            |                                                        |
+
+[l:hea]: https://dsat.igada.de/2024/04/23/searching-for-the-index.html
+[l:off]: https://dsat.igada.de/2024/05/11/visualising-entropy.html
+[l:pat]: https://dsat.igada.de/2024/05/06/finding-something-unexpected.html
+[l:pla]: https://dsat.igada.de/2005/03/26/decoding-the-city-database.html
+[l:sig]: https://dsat.igada.de/2024/07/04/finding-something-unexpected-again.html
+[l:til]: https://dsat.igada.de/2024/04/02/finding-the-tiles.html
+[l:top]: https://dsat.igada.de/2024/07/28/solving-a-mystery.html
