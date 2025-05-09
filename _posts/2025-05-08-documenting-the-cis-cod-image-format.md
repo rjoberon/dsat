@@ -1,7 +1,7 @@
 ---
 title: Documenting the CIS/COD image format
 description: A new web site has been set up to to document the CIS/COD raster image file format.
-tags: ["cod"]
+tags: ["cis-cod"]
 ---
 
 After having acquired an almost complete understanding of the file
