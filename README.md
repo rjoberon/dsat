@@ -11,7 +11,7 @@ milestone, since such imagery was not readily available (with
 web-based services appearing only a couple of years later). The data
 was stored in a proprietary file format and thus can only be used with
 the original Windows programs. Since this is not sustainable, this
-project seeks to reverse-engineer the file format for D-Sat 1 and
+project seeks to reverse-engineer the file format of D-Sat 1 and
 develop tools to access the contained data (coordinates, images,
 etc.).
 
