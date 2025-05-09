@@ -49,10 +49,10 @@ More concisely described in [dsat.ksy](src/dsat.ksy) using [Kaitai Struct](https
 |    644805639 |          19277 |  644824916 |             |                  | unknown            |                                                        |
 |    644824916 |           8995 |  644833911 |             |                  | unknown            |                                                        |
 
-[l:hea]: https://dsat.igada.de/2024/04/23/searching-for-the-index.html
-[l:off]: https://dsat.igada.de/2024/05/11/visualising-entropy.html
-[l:pat]: https://dsat.igada.de/2024/05/06/finding-something-unexpected.html
-[l:pla]: https://dsat.igada.de/2005/03/26/decoding-the-city-database.html
-[l:sig]: https://dsat.igada.de/2024/07/04/finding-something-unexpected-again.html
-[l:til]: https://dsat.igada.de/2024/04/02/finding-the-tiles.html
-[l:top]: https://dsat.igada.de/2024/07/28/solving-a-mystery.html
+[l:hea]: /2024/04/23/searching-for-the-index.html
+[l:off]: /2024/05/11/visualising-entropy.html
+[l:pat]: /2024/05/06/finding-something-unexpected.html
+[l:pla]: /2005/03/26/decoding-the-city-database.html
+[l:sig]: /2024/07/04/finding-something-unexpected-again.html
+[l:til]: /2024/04/02/finding-the-tiles.html
+[l:top]: /2024/07/28/solving-a-mystery.html
