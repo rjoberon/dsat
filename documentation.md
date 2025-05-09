@@ -33,7 +33,7 @@ instead of `dsatnord.mp`.
 More concisely described in [dsat.ksy](src/dsat.ksy) using [Kaitai Struct](https://kaitai.io/).
 
 | start offset | length [bytes] | end offset | name      | comment                                                |
-|--------------+----------------+------------+-----------+--------------------------------------------------------|
+| -----------: | -------------: | ---------: | :-------- | :----------------------------------------------------- |
 |            0 |             16 |         16 | header    |                                                        |
 |           16 |         316004 |     316020 | offsets   | offsets of the tiles                                   |
 |       316020 |         754077 |    1070097 | tiles0    | 20 color tiles of size 250x250 (zoom level 0)          |
