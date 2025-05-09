@@ -50,7 +50,7 @@ More concisely described in [dsat.ksy](src/dsat.ksy) using [Kaitai Struct](https
 |    644824916 |  644833910 |           8995 |                   |             | unknown            |                                                        |
 
 Notes: *Offsets*, *sizes*, and *record sizes* are given in bytes. If
-given, *record size* times *number of records* should equal *size*.
+given, *record size* × *number of records* = *size* should hold.
 
 [l:hea]: /2024/04/23/searching-for-the-index.html
 [l:off]: /2024/05/11/visualising-entropy.html
