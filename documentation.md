@@ -32,17 +32,17 @@ instead of `dsatnord.mp`.
 
 More concisely described in [dsat.ksy](src/dsat.ksy) using [Kaitai Struct](https://kaitai.io/).
 
-| start offset | length [bytes] | end offset | record size | numer of records | name               | comment                                                |
-| -----------: | -------------: | ---------: | ----------: | ---------------: | :--------          | :----------------------------------------------------- |
+| start offset | length [bytes] | end offset | record size | numer of records | name               | description                                            |
+| -----------: | -------------: | ---------: | ----------: | ---------------: | :----------------- | :----------------------------------------------------- |
 |            0 |             16 |         16 |          16 |                1 | [header][l:hea]    |                                                        |
 |           16 |         316004 |     316020 |           4 |            79001 | [offsets][l:off]   | offsets of the tiles                                   |
 |       316020 |         754077 |    1070097 |             |               20 | [tiles0][l:til]    | color tiles of size 250x250 (zoom level 0)             |
 |      1070097 |        9056940 |   10127037 |             |              169 | [tiles1][l:til]    | color tiles of size 500x500 (zoom level 1)             |
 |     10127037 |         567760 |   10694797 |           8 |            70970 | [paths][l:top]     | borders and highways                                   |
-|     10694797 |        1970696 |   12665493 |             |                2 | [topware][l:top]   | two BMP images (aerials of the topware headquarter)    |
+|     10694797 |        1970696 |   12665493 |             |                2 | [topware][l:top]   | aerial photos (BMP) of the Topware headquarter         |
 |     12665493 |         857216 |   13522709 |          64 |            13394 | [places][l:pla]    | places and their coordinates                           |
 |     13522709 |            384 |   13523093 |             |                  | unknown            |                                                        |
-|     13523093 |         980478 |   14503571 |        4878 |              201 | [citysigns][l:sig] | signs (75x50 BMP images) for 201 cities                |
+|     13523093 |         980478 |   14503571 |        4878 |              201 | [citysigns][l:sig] | signs for cities (75x50 BMP images)                    |
 |     14503571 |        1691200 |   16194771 |          16 |           105700 | [paths][l:pat]     | borders and highways                                   |
 |     16194771 |       70627806 |   86822577 |             |             2240 | [tiles2][l:til]    | color tiles of size 500x500 (zoom level 2)             |
 |     86822577 |      557983062 |  644805639 |             |            24700 | [tiles3][l:til]    | greyscale tiles of size 1000x1000 (zoom level 3)       |
