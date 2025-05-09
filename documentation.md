@@ -32,22 +32,25 @@ instead of `dsatnord.mp`.
 
 More concisely described in [dsat.ksy](src/dsat.ksy) using [Kaitai Struct](https://kaitai.io/).
 
-| start offset | length [bytes] | end offset | record size | numer of records | name               | description                                            |
-| -----------: | -------------: | ---------: | ----------: | ---------------: | :----------------- | :----------------------------------------------------- |
-|            0 |             16 |         16 |          16 |                1 | [header][l:hea]    |                                                        |
-|           16 |         316004 |     316020 |           4 |            79001 | [offsets][l:off]   | offsets of the tiles                                   |
-|       316020 |         754077 |    1070097 |             |               20 | [tiles0][l:til]    | color tiles of size 250x250 (zoom level 0)             |
-|      1070097 |        9056940 |   10127037 |             |              169 | [tiles1][l:til]    | color tiles of size 500x500 (zoom level 1)             |
-|     10127037 |         567760 |   10694797 |           8 |            70970 | [paths][l:top]     | borders and highways                                   |
-|     10694797 |        1970696 |   12665493 |             |                2 | [topware][l:top]   | aerial photos (BMP) of the Topware headquarter         |
-|     12665493 |         857216 |   13522709 |          64 |            13394 | [places][l:pla]    | places and their coordinates                           |
-|     13522709 |            384 |   13523093 |             |                  | unknown            |                                                        |
-|     13523093 |         980478 |   14503571 |        4878 |              201 | [citysigns][l:sig] | signs for cities (75x50 BMP images)                    |
-|     14503571 |        1691200 |   16194771 |          16 |           105700 | [paths][l:pat]     | borders and highways                                   |
-|     16194771 |       70627806 |   86822577 |             |             2240 | [tiles2][l:til]    | color tiles of size 500x500 (zoom level 2)             |
-|     86822577 |      557983062 |  644805639 |             |            24700 | [tiles3][l:til]    | greyscale tiles of size 1000x1000 (zoom level 3)       |
-|    644805639 |          19277 |  644824916 |             |                  | unknown            |                                                        |
-|    644824916 |           8995 |  644833911 |             |                  | unknown            |                                                        |
+| start offset | end offset |           size | number of records | record size | name               | description                                            |
+| -----------: | ---------: | -------------: | ----------------: | ----------: | :----------------- | :----------------------------------------------------- |
+|            0 |         15 |             16 |                 1 |          16 | [header][l:hea]    |                                                        |
+|           16 |     316019 |         316004 |             79001 |           4 | [offsets][l:off]   | offsets of the tiles                                   |
+|       316020 |    1070096 |         754077 |                20 |             | [tiles0][l:til]    | color tiles of size 250x250 (zoom level 0)             |
+|      1070097 |   10127036 |        9056940 |               169 |             | [tiles1][l:til]    | color tiles of size 500x500 (zoom level 1)             |
+|     10127037 |   10694796 |         567760 |             70970 |           8 | [paths][l:top]     | borders and highways                                   |
+|     10694797 |   12665492 |        1970696 |                 2 |             | [topware][l:top]   | aerial photos (BMP) of the Topware headquarter         |
+|     12665493 |   13522708 |         857216 |             13394 |          64 | [places][l:pla]    | places and their coordinates                           |
+|     13522709 |   13523092 |            384 |                   |             | unknown            |                                                        |
+|     13523093 |   14503570 |         980478 |               201 |        4878 | [citysigns][l:sig] | signs for cities (75x50 BMP images)                    |
+|     14503571 |   16194770 |        1691200 |            105700 |          16 | [paths][l:pat]     | borders and highways                                   |
+|     16194771 |   86822576 |       70627806 |              2240 |             | [tiles2][l:til]    | color tiles of size 500x500 (zoom level 2)             |
+|     86822577 |  644805638 |      557983062 |             24700 |             | [tiles3][l:til]    | greyscale tiles of size 1000x1000 (zoom level 3)       |
+|    644805639 |  644824915 |          19277 |                   |             | unknown            |                                                        |
+|    644824916 |  644833910 |           8995 |                   |             | unknown            |                                                        |
+
+Notes: *Offsets*, *sizes*, and *record sizes* are given in bytes. If
+given, *record size* times *number of records* should equal *size*.
 
 [l:hea]: /2024/04/23/searching-for-the-index.html
 [l:off]: /2024/05/11/visualising-entropy.html
