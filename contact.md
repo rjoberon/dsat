@@ -1,5 +1,4 @@
 ---
-title: Contact
 description: Contact details / imprint
 layout: default
 permalink: contact.html
