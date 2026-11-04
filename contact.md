@@ -2,6 +2,7 @@
 title: Contact
 description: Contact details / imprint
 layout: default
+permalink: contact.html
 ---
 
 Humboldt-Universität zu Berlin<br/>
