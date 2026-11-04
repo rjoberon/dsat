@@ -1,4 +1,8 @@
-# Contact
+---
+title: Contact
+description: Contact details / imprint
+layout: default
+---
 
 Humboldt-Universität zu Berlin<br/>
 Berlin School for Library and Information Science<br/>
