@@ -1,10 +1,10 @@
 ---
-description: Contact details / imprint
+description: About
 layout: default
-permalink: contact.html
+permalink: about.html
 ---
 
-# Contact
+# About
 
 Humboldt-Universität zu Berlin<br/>
 Berlin School for Library and Information Science<br/>
